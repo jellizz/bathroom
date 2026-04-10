@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const Browse = () => {
+    useEffect(() => {
+        fetch('http://localhost:5001/api/bathrooms')
+        .then(res => res.json())
+        .then(data => console.log('testing backend connects...', data))
+    }, [])
+
     return (
         <div>
             <h1>Cornell Bathrooms</h1>
