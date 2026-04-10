@@ -1,8 +1,6 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const Bathroom = () => {
-    const{ id } = useParams()
-    
+const Bathroom = () => {    
     return (
         <div>
             <h1>The Baker Lab Basement Bathroom</h1>
