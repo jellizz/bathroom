@@ -3,7 +3,7 @@ import Browse from './pages/Browse'
 import Bathroom from './pages/Bathroom'
 import Add from './pages/Add'
 
-// The main app component. Allows "routing" to different pages.
+// The main app component. Allows "routing" to different pages using React Router! Yay!
 // Has upper navigation bar for accessing different pages
 // and defines routes (i.e. URL paths) for the browse page, individual bathroom pages, and the add page.
 
@@ -14,8 +14,8 @@ function App() {
     <BrowserRouter>
       <nav>
         <Link to="/">Browse</Link> | 
-        <Link to="/add">Add Bathroom</Link>
-        <span style={{ color: 'rgb(255, 188, 188)' }}>Bathroom Map (not yet implemented)</span>
+        <Link to="/add">Add Bathroom</Link> |
+        <span style={{ color: 'rgb(218, 112, 112)' }}>Bathroom Map (not yet implemented)</span>
       </nav>
       <Routes>
         <Route path="/" element={<Browse />} /> 
@@ -25,5 +25,7 @@ function App() {
     </BrowserRouter>
   )
 }
+
+// NOTE: according to React Router docs, can use useParams to access bathroom id from URL.
 
 export default App

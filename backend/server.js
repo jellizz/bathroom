@@ -33,6 +33,30 @@ app.get('/api/bathrooms/:id/reviews', (req, res) => {
   res.json(bathroomReviews)
 })
 
+// This is good practice for PUSHing info to server (such as a user liking a review)
+
+// increment likes for a specific review (they have their own ids separate from bathroom id)
+app.put('/api/reviews/:id/like', (req, res) => { 
+  const review = reviews.find(r => r.id === Number(req.params.id))
+  if (!review) {
+    return res.status(404).json({ message: 'Review not found' })
+  }
+  review.likes += 1 // so it actually updates the number of likes in the server data, not just on the frontend
+  res.json(review)
+})
+
+// increment dislikes for a review (same deal)
+app.put('/api/reviews/:id/dislike', (req, res) => {
+  const review = reviews.find(r => r.id === Number(req.params.id))
+  if (!review) {
+    return res.status(404).json({ message: 'Review not found' })
+  }
+  review.dislikes += 1
+  res.json(review)
+})
+
+
+// TODO: flesh these out!
 
 // makes new bathroom profile
 app.post('/api/bathrooms', (req, res) => {

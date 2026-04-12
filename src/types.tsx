@@ -2,7 +2,7 @@
 // which will be used to ensure type safety when working with bathroom and review data.
 
 type Bathroom = {
-     id: number
+    id: number
     name: string
     description: string
     rating: number

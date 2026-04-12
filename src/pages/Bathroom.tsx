@@ -1,12 +1,63 @@
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useParams} from 'react-router-dom'
+import type { Bathroom, Review } from '../types'
+import LikeDislikeButton from './LikeDislikeButton'
 
-const Bathroom = () => {    
-    return (
+// Displays bathroom with details and reviews based on the bathroom id in the url.
+
+const Bathroom = () => {
+    
+    const { id } = useParams() // this is the bathroom id, from react router stuffs
+    const [bathroom, setBathroom] = useState<Bathroom | null>(null) // null if it isn't fetched?
+    const [reviews, setReviews] = useState<Review[]>([])
+
+    
+    // access the bathroom information via API, using the bathroom id.
+    useEffect(() => {
+        fetch(`http://localhost:5001/api/bathrooms/${id}`) 
+        .then(res => res.json())
+        .then(data => setBathroom(data))
+        .catch (err => console.error('error fetching this bathroom:', err))
+
+        // also need to fetch the reviews
+        fetch(`http://localhost:5001/api/bathrooms/${id}/reviews`).then(res => res.json())
+        .then(data => setReviews(data))
+        .catch (err => console.error('error fetching reviews for this bathroom:', err))
+
+    }, [id]) // dependent on id in url.
+
+    if (!bathroom) { // if no bathroom yet (or issues fetching the bathroom)
+        return <p>Loading this bathroom...</p>
+    }
+
+    return ( // this formatting is a little bit bad...
         <div>
-            <h1>The Baker Lab Basement Bathroom</h1>
-            <p>A single-room, gender-neutral bathroom!</p>
+            <Link to="/"><button>Back to browse</button></Link>
+            <h1>{bathroom.name}</h1>
+
+            <ul>
+                Summary:
+                <li>Average cleanliness: <strong>{bathroom.rating}/5</strong></li>
+                <li>Gender: <strong>{bathroom.gender}</strong></li>
+                <li>Single stall: <strong>{bathroom.singleStall ? 'Yes' : 'No'}</strong></li>
+                <li>Wheelchair accessible: <strong>{bathroom.wheelchairAccessible ? 'Yes' : 'No'}</strong></li>
+                <li>Has shower: <strong>{bathroom.hasShower ? 'Yes' : 'No'}</strong></li>
+            </ul>
+
+            <h2>Reviews ({reviews.length})</h2>
+            <div style = {{ textAlign: 'left',border: '1px solid #4d8fc9', padding: '20px', margin: '10px', backgroundColor: '#BDE0EE' }}>
+                {reviews.length === 0 && <p>No reviews yet!</p>}
+                {reviews.map(review => (
+                    <div>
+                        <p>Posted {review.date}:</p>
+                        <p>{review.text}</p>
+                        <LikeDislikeButton review={review} />
+                    </div>
+                ))}
+            </div>
+
             <Link to="/add">
-                <button>Add a review for this bathroom.</button>
+                <button>Add a review for this bathroom</button>
             </Link>
         </div>
     )
