@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 
-
-// A new webpage with one button to add a new bathroom, and one to review an existing bathroom.
-// also links back to the main browse page
+// The add page, which allows users to select between 2 buttons that prompt them to either
+// review an existing bathroom or share a new bathroom. 
+// (The buttons don't do anything yet, but will eventually link to the appropriate forms for each action.)
 
 const Add = () => {
     return (

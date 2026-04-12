@@ -1,3 +1,4 @@
+
 const express = require('express')
 const cors = require('cors')
 
@@ -5,15 +6,33 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+// because we don't have a database yet, I hardcoded some bathroom data to test the API routes.
+// will be removed once we have a database we can pull from instead.
+
+const bathrooms = require('./data/bathrooms.json')
+const reviews = require('./data/reviews.json')
+
 // get all bathrooms 
 app.get('/api/bathrooms', (req, res) => {
-  res.json({ message: 'GET request - returns list of all bathrooms' })
+  res.json(bathrooms)
 })
 
 // get a specific bathroom based on id
 app.get('/api/bathrooms/:id', (req, res) => {
-  res.json({ message: `GET request - returns bathroom ${req.params.id}` })
+
+  const bathroom = bathrooms.find(b => b.id === Number(req.params.id))
+  if (!bathroom) { 
+    return res.status(404).json({ message: `Bathroom with id ${req.params.id} not found` })
+  }
+  res.json(bathroom)
 })
+
+// get a specific bathroom's reviews based on id
+app.get('/api/bathrooms/:id/reviews', (req, res) => {
+  const bathroomReviews = reviews.filter(r => r.bathroomId === Number(req.params.id))
+  res.json(bathroomReviews)
+})
+
 
 // makes new bathroom profile
 app.post('/api/bathrooms', (req, res) => {

@@ -1,0 +1,22 @@
+[
+  { 
+    "id": 1,
+    "name": "Baker Lab Bathroom (2nd floor)",
+    "description": "This is a gender neutral, single stall bathroom. It is not wheelchair accessible.",
+    "rating": 3.6,
+    "gender": "Gender neutral",
+    "singleStall": true,
+    "wheelchairAccessible": false,
+    "hasShower": false
+  },
+  {
+    "id": 2,
+    "name": "Baker Lab Bathroom (3rd floor)",
+    "description": "This is a female, multi stall bathroom. It is wheelchair accessible.",
+    "rating": 4.8,
+    "gender": "Female",
+    "singleStall": false,
+    "wheelchairAccessible": true,
+    "hasShower": false
+  }
+]
