@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Browse from './pages/Browse'
-import Bathroom from './pages/Bathroom'
 import Add from './pages/Add'
+import BathroomDisplay from './pages/BathroomDisplay'
 
 // The main app component. Allows "routing" to different pages using React Router! Yay!
 // Has upper navigation bar for accessing different pages
@@ -19,7 +19,7 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Browse />} /> 
-        <Route path="/bathroom/:id" element={<Bathroom />} />
+        <Route path="/bathroom/:id" element={<BathroomDisplay />} />
         <Route path="/add" element={<Add />} />
       </Routes>
     </BrowserRouter>

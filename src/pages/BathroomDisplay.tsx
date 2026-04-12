@@ -5,7 +5,7 @@ import LikeDislikeButton from './LikeDislikeButton'
 
 // Displays bathroom with details and reviews based on the bathroom id in the url.
 
-const Bathroom = () => {
+const BathroomDisplay = () => {
     
     const { id } = useParams() // this is the bathroom id, from react router stuffs
     const [bathroom, setBathroom] = useState<Bathroom | null>(null) // null if it isn't fetched?
@@ -63,4 +63,4 @@ const Bathroom = () => {
     )
 }
 
-export default Bathroom
+export default BathroomDisplay
