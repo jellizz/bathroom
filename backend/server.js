@@ -10,7 +10,7 @@ app.get('/api/bathrooms', (req, res) => {
   res.json({ message: 'GET request - returns list of all bathrooms' })
 })
 
-// get a specific bathroom
+// get a specific bathroom based on id
 app.get('/api/bathrooms/:id', (req, res) => {
   res.json({ message: `GET request - returns bathroom ${req.params.id}` })
 })
