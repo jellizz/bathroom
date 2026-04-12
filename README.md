@@ -55,10 +55,9 @@ Frontend UI Pages:
     - User profile pages
     - Bathroom chat forum page
 
-- Backend API:
+Backend API:
 - HTTP requests:
-	GET: all bathrooms data → specific bathroom
-	POST: add new bathroom
-		add review to existing bathroom
-	PUT: update bathroom info (avg rating, tags)
-	DELETE: delete bathroom review
+	- GET: all bathrooms data → specific bathroom
+	- POST: add new bathroom, add review to existing bathroom
+	- PUT: update bathroom info (avg rating, tags)
+	- DELETE: delete bathroom review
