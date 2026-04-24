@@ -18,5 +18,85 @@
     "singleStall": false,
     "wheelchairAccessible": true,
     "hasShower": false
+  },
+  {
+    "id": 3,
+    "name": "Uris Library Bathroom (1st floor)",
+    "description": "Male bathroom with multiple stalls. Clean and well-maintained.",
+    "rating": 4.2,
+    "gender": "Male",
+    "singleStall": false,
+    "wheelchairAccessible": true,
+    "hasShower": false
+  },
+  {
+    "id": 4,
+    "name": "Goldwin Smith Hall Bathroom (Ground floor)",
+    "description": "Gender neutral single stall. A bit outdated but functional.",
+    "rating": 2.9,
+    "gender": "Gender neutral",
+    "singleStall": true,
+    "wheelchairAccessible": false,
+    "hasShower": false
+  },
+  {
+    "id": 5,
+    "name": "Statler Hall Bathroom (2nd floor)",
+    "description": "Female bathroom with showers. Great for athletes.",
+    "rating": 4.5,
+    "gender": "Female",
+    "singleStall": false,
+    "wheelchairAccessible": true,
+    "hasShower": true
+  },
+  {
+    "id": 6,
+    "name": "Day Hall Bathroom (Basement)",
+    "description": "Male single stall. Quiet and private.",
+    "rating": 3.8,
+    "gender": "Male",
+    "singleStall": true,
+    "wheelchairAccessible": false,
+    "hasShower": false
+  },
+  {
+    "id": 7,
+    "name": "Ithaca Commons Public Restroom",
+    "description": "Public gender neutral bathroom. Busy during peak hours.",
+    "rating": 3.1,
+    "gender": "Gender neutral",
+    "singleStall": false,
+    "wheelchairAccessible": true,
+    "hasShower": false
+  },
+  {
+    "id": 8,
+    "name": "Rockefeller Hall Bathroom (4th floor)",
+    "description": "Female bathroom. Excellent views but long wait times.",
+    "rating": 4.7,
+    "gender": "Female",
+    "singleStall": false,
+    "wheelchairAccessible": true,
+    "hasShower": false
+  },
+  {
+    "id": 9,
+    "name": "Mann Library Bathroom (2nd floor)",
+    "description": "Gender neutral with showers. Perfect for late-night study sessions.",
+    "rating": 4.0,
+    "gender": "Gender neutral",
+    "singleStall": false,
+    "wheelchairAccessible": true,
+    "hasShower": true
+  },
+  {
+    "id": 10,
+    "name": "Cascadilla Gorge Trail Restroom",
+    "description": "Outdoor public bathroom. Basic facilities.",
+    "rating": 2.5,
+    "gender": "Unisex",
+    "singleStall": false,
+    "wheelchairAccessible": false,
+    "hasShower": false
   }
 ]

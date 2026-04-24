@@ -13,6 +13,8 @@ const Browse = () => {
     // state variables
     const [query, setQuery] = useState('')
     const [bathrooms, setBathrooms] = useState<Bathroom[]>([])
+    const [sortBy, setSortBy] = useState<'name' | 'rating'>('rating')
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
 
     // access entire bathroom list via API, set bathrooms state variable to the returned data
     // useEffect so its when it "mounts" (i.e. when the page first loads)
@@ -25,10 +27,16 @@ const Browse = () => {
 
     // filter bathrooms based on search query (by name... for now!)
     const filtered = bathrooms.filter((b) => // filtering function
-        b.name.toLowerCase().includes(query.toLowerCase())
-    )
+        b.name.toLowerCase().includes(query.toLowerCase()) ||
+        b.description.toLowerCase().includes(query.toLowerCase())
+    ).sort((a, b) => {
+        if (sortBy === 'rating') {
+            return sortOrder === 'desc' ? b.rating - a.rating : a.rating - b.rating
+        } else {
+            return sortOrder === 'desc' ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name)
+        }
+    })
     
-    // css formatting? use className stuff (if we want. For now we can keep it ugly lol)
     return (
         <div className="browse-page">
             <h1>Cornell Bathrooms 🚽</h1>
@@ -42,7 +50,13 @@ const Browse = () => {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                 />
-                 <button disabled>Sort by rating (not implemented yet)</button>
+                <select value={sortBy} onChange={(e) => setSortBy(e.target.value as 'name' | 'rating')}>
+                    <option value="rating">Sort by Rating</option>
+                    <option value="name">Sort by Name</option>
+                </select>
+                <button onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}>
+                    {sortOrder === 'desc' ? 'High to Low' : 'Low to High'}
+                </button>
             </div>
 
             <div className="bathroom-list">
