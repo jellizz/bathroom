@@ -13,6 +13,7 @@
   "type": "commonjs",
   "dependencies": {
     "cours": "^1.0.0",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "firebase-admin": "^13.8.0"
   }
 }
