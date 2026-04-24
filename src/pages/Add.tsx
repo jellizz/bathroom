@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import './Add.css'
 
 // The add page, which allows users to select between 2 buttons that prompt them to either
 // review an existing bathroom or share a new bathroom. 
@@ -9,34 +10,29 @@ const Add = () => {
     const [text, setText] = useState('') // this is the text for the review form, which will eventually be sent to the backend when the user submits a new review.
     return (
 
-        <div>
-            <h1 style={{ textAlign: 'center' }}>Cornell Bathrooms 🚽</h1>
-            <p style={{ textAlign: 'center' }}>Explore and rate bathrooms around campus!</p>
-            <div style={{ justifyContent: 'center', display: 'flex', gap: '20px', marginTop: '15px' }}>
-                <button style={{ height: '50px', width: '200px', fontSize: '16px' }}>
-                     Review an existing bathroom
-                </button>
-                <button style={{ height: '50px', width: '200px', fontSize: '16px' }}>
-                    Share a new bathroom
-                </button>
+        <div className="add-page">
+            <h1>Cornell Bathrooms 🚽</h1>
+            <p>Explore and rate bathrooms around campus!</p>
+            <div className="button-row">
+                <button>Review an existing bathroom</button>
+                <button>Share a new bathroom</button>
             </div>
 
             <h2>Creating a new review</h2>
 
-            <label style={{ display: 'block' }}>
+            <label className="form-group">
                 Tell us about it!<br />
                 <textarea
                     rows={5}
                     placeholder="Write your review here..."
                     value={text}
                     onChange={e => setText(e.target.value)}
-                    style={{ marginTop: '6px', padding: '8px', width: '90%', boxSizing: 'border-box'}}
                 />
             </label>
-            <button style={{ height: '50px', width: '150px', fontSize: '16px', backgroundColor: '#adff9f', border: 'none', borderRadius: '5px'}}>
+            <button className="submit-button">
                 Submit review
             </button>
-            <p style={{ marginTop: '15px'}}>
+            <p className="back-link">
                 <Link to="/">Back to browsing</Link>
             </p>
         </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams} from 'react-router-dom'
 import type { Bathroom, Review } from '../types'
 import LikeDislikeButton from './LikeDislikeButton'
+import './BathroomDisplay.css'
 
 // Displays bathroom with details and reviews based on the bathroom id in the url.
 
@@ -31,12 +32,11 @@ const BathroomDisplay = () => {
     }
 
     return ( // this formatting is a little bit bad...
-        <div>
+        <div className="display-page">
             <Link to="/"><button>Back to browse</button></Link>
             <h1>{bathroom.name}</h1>
 
-            <ul>
-                Summary:
+            <ul className="summary-list">
                 <li>Average cleanliness: <strong>{bathroom.rating}/5</strong></li>
                 <li>Gender: <strong>{bathroom.gender}</strong></li>
                 <li>Single stall: <strong>{bathroom.singleStall ? 'Yes' : 'No'}</strong></li>
@@ -45,10 +45,10 @@ const BathroomDisplay = () => {
             </ul>
 
             <h2>Reviews ({reviews.length})</h2>
-            <div style = {{ textAlign: 'left',border: '1px solid #4d8fc9', padding: '20px', margin: '10px', backgroundColor: '#BDE0EE' }}>
+            <div className="review-list">
                 {reviews.length === 0 && <p>No reviews yet!</p>}
                 {reviews.map(review => (
-                    <div>
+                    <div key={review.id} className="review-item">
                         <p>Posted {review.date}:</p>
                         <p>{review.text}</p>
                         <LikeDislikeButton review={review} />

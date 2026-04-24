@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { Bathroom } from '../types'
+import './BathroomCard.css'
 
 
 // Displays the information about a specific Bathroom, organized on Browse page.
@@ -12,11 +13,11 @@ interface Props {
 
 const BathroomCard = ({ bathroom }: Props) => {
   return (
-    <div style={{ textAlign: 'left', border: '1px solid #4d8fc9', padding: '20px', margin: '10px', backgroundColor: '#BDE0EE' }}  >
-      <h3 style={{ color: '#242424' }}>{bathroom.name}</h3>
+    <div className="bathroom-card">
+      <h3>{bathroom.name}</h3>
       <p><strong>{bathroom.description}</strong></p>
       <p>Average cleanliness: {bathroom.rating}/5</p>
-      <p> 
+      <p>
         <strong>Read bathroom goers' reviews </strong>
         <Link to={`/bathroom/${bathroom.id}`}>here</Link>
       </p>

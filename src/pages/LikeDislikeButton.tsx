@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { Review } from '../types'
+import './LikeDislikeButton.css'
 
 
 // shows the likes and dislikes for a given review, allows users to click buttons to like or dislike
@@ -36,8 +37,8 @@ const LikeDislikeButton = ({ review }: Props) => {
 
 
     return (
-        <div>
-            <button onClick={handleLike}>Likes ({likes})</button>{' '}
+        <div className="like-dislike">
+            <button onClick={handleLike}>Likes ({likes})</button>
             <button onClick={handleDislike}>Dislikes ({dislikes})</button>
         </div>
     )

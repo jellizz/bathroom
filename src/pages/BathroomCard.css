@@ -1,0 +1,24 @@
+.bathroom-card {
+  text-align: left;
+  border: 1px solid var(--accent);
+  padding: 20px;
+  margin: 10px 0;
+  background-color: #bde0ee;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.bathroom-card h3 {
+  margin-top: 0;
+  color: #242424;
+}
+
+.bathroom-card p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.bathroom-card a {
+  color: var(--accent);
+  text-decoration: underline;
+}

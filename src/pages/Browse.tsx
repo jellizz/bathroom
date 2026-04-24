@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import type { Bathroom } from '../types'
 import BathroomCard from './BathroomCard'
+import './Browse.css'
 
 // the main page that users see upon visiting the site.
 // Displays a list of bathrooms (hardcoded) and a button to add a new bathroom.
@@ -29,22 +30,22 @@ const Browse = () => {
     
     // css formatting? use className stuff (if we want. For now we can keep it ugly lol)
     return (
-        <div>
+        <div className="browse-page">
             <h1>Cornell Bathrooms 🚽</h1>
             <p>
                 Explore and rate bathrooms around campus!
             </p>
-            <div>
+            <div className="browse-actions">
                 <input
                     type="text"
                     placeholder="Enter a location, name, or description..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                 />
-                 <button disabled> Sort by rating (not implemented yet) </button>
+                 <button disabled>Sort by rating (not implemented yet)</button>
             </div>
 
-            <div>
+            <div className="bathroom-list">
             {filtered.map(b => (
                 <BathroomCard 
                     key={b.id} 

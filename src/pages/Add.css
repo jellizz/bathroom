@@ -1,0 +1,50 @@
+.add-page {
+  padding: 24px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.add-page h1,
+.add-page p {
+  text-align: center;
+}
+
+.add-page .button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0 32px;
+}
+
+.add-page button {
+  min-width: 180px;
+  min-height: 48px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.add-page .submit-button {
+  background-color: #adff9f;
+  border: none;
+}
+
+.add-page .form-group {
+  margin-top: 24px;
+}
+
+.add-page textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 140px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  resize: vertical;
+  font: inherit;
+}
+
+.add-page .back-link {
+  display: inline-block;
+  margin-top: 18px;
+}

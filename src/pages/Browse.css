@@ -1,0 +1,44 @@
+.browse-page {
+  padding: 24px 20px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.browse-page h1 {
+  margin-bottom: 8px;
+}
+
+.browse-page p {
+  margin: 0 0 24px;
+  color: var(--text);
+}
+
+.browse-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.browse-actions input {
+  flex: 1 1 320px;
+  min-width: 220px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.browse-actions button {
+  flex: 0 0 auto;
+}
+
+.bathroom-list {
+  display: grid;
+  gap: 16px;
+}
+
+.browse-page > a {
+  display: inline-block;
+  margin-top: 24px;
+}
