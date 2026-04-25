@@ -17,6 +17,8 @@
   color: #242424;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  font-size: 25px;
+  font-weight: 700px;
 }
 
 .bathroom-card p {
@@ -24,9 +26,17 @@
   line-height: 1.5;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  font-size: 16px;
 }
 
+.bathroom-card p strong {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
 .bathroom-card a {
-  color: var(--accent);
+  color: rgb(54, 95, 145);
   text-decoration: underline;
+  font-size: 16px;
 }

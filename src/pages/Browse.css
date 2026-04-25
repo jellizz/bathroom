@@ -2,19 +2,33 @@
   padding: 24px 20px;
   max-width: 980px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .browse-page h1 {
-  margin-bottom: 8px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 80px;
+  font-weight: 900;
+  color: rgb(49, 66, 87);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.browse-page p {
+.browse-page > p {
+  margin-top: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  color: rgb(49, 66, 87);
   margin: 0 0 24px;
   color: var(--text);
 }
 
 .search-section {
   margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
 }
 
 .search-section input {
@@ -24,22 +38,52 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   background: #fff;
+  font-family: inherit;
+  font-size: 16px;
 }
+
+.search-section input:focus {
+  outline: none; 
+  box-shadow: 0 0 0 2px rgba(248, 156, 156, 0.753)
+}
+
 
 .filter-section {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
   margin-bottom: 24px;
 }
 
-.filter-section select {
+.filter-section select, .filter-section button {
   min-width: 140px;
+  padding: 8px px;
+  font-size: 15px;
+  text-align: center;
+  border: 1px solid #55548c;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .filter-section button {
   flex: 0 0 auto;
+  background-color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.filter-section button:hover {
+  background-color: rgb(163, 183, 213);
+  transform: translateY(-1px);
 }
 
 .bathroom-list {
@@ -47,10 +91,70 @@
   flex-direction: column;
   gap: 16px;
   max-width: 100%;
+  align-items: center;
+  font-size: 14px
+}
+
+.bathroom-card {
+  width: 100%;
+  max-width: 600px;
+  font-size: 14px;
 }
 
 .browse-page > a {
   display: block;
   margin-top: 32px;
   text-align: center;
+}
+
+
+.browse-page > a button {
+  min-width: 180px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid #55548c;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.browse-page > a button:hover {
+  background-color: rgb(163, 183, 213);
+  transform: translateY(-1px);
+}
+
+.paginator button {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px;
+  margin: 0 4px;
+  border: 1px solid #55548c;
+  border-radius: 8px;
+  background-color: white;
+  color: rgb(49, 66, 87);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.paginator button:hover {
+  background-color: rgb(163, 183, 213);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.paginator button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.paginator button.active {
+  background-color: rgb(89, 109, 139);
+  color: white;
+  border-color: rgb(89, 109, 139);
 }

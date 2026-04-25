@@ -1,0 +1,41 @@
+.login-button {
+    font-family: 'Nunito', sans-serif;
+    min-width: 140px;
+    padding: 4px 8px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #55548c;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.logout-button {
+    font-family: 'Nunito', sans-serif;
+    min-width: 70px;
+    padding: 4px 8px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #55548c;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: rgb(25, 49, 78);
+}
+
+.username {
+  color: rgb(40, 60, 90);
+}
