@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
+import LoginButton from './pages/Login'
 import Browse from './pages/Browse'
 import Add from './pages/Add'
 import BathroomDisplay from './pages/BathroomDisplay'
@@ -17,6 +18,7 @@ function App() {
         <Link to="/">Browse</Link> | 
         <Link to="/add">Add Bathroom</Link> |
         <span>Bathroom Map (not yet implemented)</span>
+        <LoginButton />
       </nav>
       <Routes>
         <Route path="/" element={<Browse />} /> 
