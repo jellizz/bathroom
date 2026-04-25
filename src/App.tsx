@@ -17,8 +17,7 @@ function App() {
       <nav>
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
           <img src="/toiletlogored.svg" alt="Logo" style={{ height: '60px' }} />
-          <Link to="/">Browse</Link>
-          <Link to="/add">Add Bathroom</Link>
+
         </div>
         <Link to="/">Browse</Link> | 
         <Link to="/add">Add Bathroom</Link> |
