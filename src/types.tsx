@@ -18,6 +18,7 @@ type Review = {
   bathroomId: number
   date: string
   text: string
+  rating: number
   likes: number
   dislikes: number
 }

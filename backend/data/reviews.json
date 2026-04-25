@@ -3,7 +3,8 @@
     "id": 1,
     "bathroomId": 2, 
     "date": "4/7/2026",
-    "text": "Loved this bathroom! Seems pretty regularly maintained. A bit of gunk in the sink though, which is why this wasn't a perfect 5 stars. Good place to go and cry your eyes out if you're about to take an exam since its pretty far from any places with a lot of foot traffic. Good pooping spot too.",
+    "text": "Loved this bathroom! Seems pretty regularly maintained. A bit of gunk in the sink though. Good place to study!",
+    "rating": 4,
     "likes": 13,
     "dislikes": 1
   },
@@ -11,7 +12,8 @@
     "id": 2,
     "bathroomId": 1,
     "date": "4/8/2026",
-    "text": "It's okay, but the single stall can feel cramped. Not accessible, which is a problem. AAAAAAAAA LONG REVIEWWWWW RAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH",
+    "text": "It's okay, but the single stall can feel cramped. Not accessible, which is a problem.",
+    "rating": 3,
     "likes": 5,
     "dislikes": 3
   },
@@ -20,6 +22,7 @@
     "bathroomId": 3,
     "date": "4/9/2026",
     "text": "Clean and spacious. Always stocked with toilet paper. Highly recommend!",
+    "rating": 5,
     "likes": 20,
     "dislikes": 0
   },
@@ -28,6 +31,7 @@
     "bathroomId": 4,
     "date": "4/10/2026",
     "text": "Outdated fixtures, but it works. Could use some updating.",
+    "rating": 2,
     "likes": 2,
     "dislikes": 7
   },
@@ -36,6 +40,7 @@
     "bathroomId": 5,
     "date": "4/11/2026",
     "text": "Showers are a lifesaver after practice. Keep it up!",
+    "rating": 5,
     "likes": 15,
     "dislikes": 2
   },
@@ -44,6 +49,7 @@
     "bathroomId": 6,
     "date": "4/12/2026",
     "text": "Quiet and private. Perfect for a quick break.",
+    "rating": 4,
     "likes": 8,
     "dislikes": 1
   },

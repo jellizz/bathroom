@@ -8,7 +8,7 @@
     "singleStall": true,
     "wheelchairAccessible": false,
     "hasShower": false,
-    "campus": "North"
+    "campus": "Central"
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "singleStall": false,
     "wheelchairAccessible": true,
     "hasShower": false,
-    "campus": "North"
+    "campus": "Central"
   },
   {
     "id": 3,
@@ -41,7 +41,7 @@
     "singleStall": true,
     "wheelchairAccessible": false,
     "hasShower": false,
-    "campus": "West"
+    "campus": "Central"
   },
   {
     "id": 5,
@@ -67,14 +67,14 @@
   },
   {
     "id": 7,
-    "name": "Ithaca Commons Public Restroom",
+    "name": "Becker House Bathroom (1st floor)",
     "description": "Public gender neutral bathroom. Busy during peak hours.",
     "rating": 3.1,
     "gender": "Gender neutral",
     "singleStall": false,
     "wheelchairAccessible": true,
     "hasShower": false,
-    "campus": "Central"
+    "campus": "West"
   },
   {
     "id": 8,
@@ -85,7 +85,7 @@
     "singleStall": false,
     "wheelchairAccessible": true,
     "hasShower": false,
-    "campus": "North"
+    "campus": "Central"
   },
   {
     "id": 9,
@@ -96,17 +96,17 @@
     "singleStall": false,
     "wheelchairAccessible": true,
     "hasShower": true,
-    "campus": "West"
+    "campus": "Central"
   },
   {
     "id": 10,
-    "name": "Cascadilla Gorge Trail Restroom",
+    "name": "CASC BATHROOM WITH RATSSSS",
     "description": "Outdoor public bathroom. Basic facilities.",
-    "rating": 2.5,
+    "rating": 0,
     "gender": "Unisex",
     "singleStall": false,
     "wheelchairAccessible": false,
     "hasShower": false,
-    "campus": "West"
+    "campus": "South"
   }
 ]

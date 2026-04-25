@@ -16,7 +16,7 @@ const BathroomCard = ({ bathroom }: Props) => {
     <div className="bathroom-card">
       <h3>{bathroom.name}</h3>
       <p><strong>{bathroom.description}</strong></p>
-      <p>Average cleanliness: {bathroom.rating}/5</p>
+      <p>Average rating: {bathroom.rating}/5</p>
       <p>Campus: {bathroom.campus}</p>
       <p>
         <strong>Read bathroom goers' reviews </strong>
