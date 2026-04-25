@@ -10,6 +10,7 @@ type Bathroom = {
     singleStall: boolean
     wheelchairAccessible: boolean
     hasShower: boolean
+    campus: 'North' | 'West' | 'Central'
 }
 
 type Review = {

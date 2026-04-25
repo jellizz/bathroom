@@ -1,0 +1,29 @@
+.paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.paginator button {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    background: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.paginator button:hover {
+    background: var(--border);
+}
+
+.paginator button.active {
+    background: var(--text-h);
+    color: white;
+}
+
+.paginator button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

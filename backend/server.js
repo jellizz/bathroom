@@ -29,24 +29,24 @@ const reviews = require('./data/reviews.json')
 
 // get all bathrooms 
 app.get('/api/bathrooms', async (req, res) => {
-  /* res.json(bathrooms) */
-  try {
+  res.json(bathrooms)
+  /* try {
     const snapshot = await db.collection('bathrooms').get()
     const bathrooms = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
     res.json(bathrooms)
   } catch (error) {
     res.status(500).json({ message: error.message })
-  }
+  } */
 })
 
 // get a specific bathroom based on id
 app.get('/api/bathrooms/:id', async (req, res) => {
-/*   const bathroom = bathrooms.find(b => b.id === Number(req.params.id))
+  const bathroom = bathrooms.find(b => b.id === Number(req.params.id))
   if (!bathroom) { 
     return res.status(404).json({ message: `Bathroom with id ${req.params.id} not found` })
   }
-  res.json(bathroom) */
-  try {
+  res.json(bathroom)
+  /* try {
     const doc = await db.collection('bathrooms').doc(req.params.id).get()
     if (!doc.exists) {
       return res.status(404).json({ message: `Bathroom with id ${req.params.id} not found` })
@@ -54,7 +54,7 @@ app.get('/api/bathrooms/:id', async (req, res) => {
     res.json({ id: doc.id, ...doc.data() })
   } catch (error) {
     res.status(500).json({ message: error.message })
-  }
+  } */
 })
 
 // get a specific bathroom's reviews based on id

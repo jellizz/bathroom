@@ -14,9 +14,11 @@ function App() {
   return (
     <BrowserRouter>
       <nav>
-        <Link to="/">Browse</Link> | 
-        <Link to="/add">Add Bathroom</Link> |
-        <span>Bathroom Map (not yet implemented)</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <img src="/toiletlogored.svg" alt="Logo" style={{ height: '60px' }} />
+          <Link to="/">Browse</Link>
+          <Link to="/add">Add Bathroom</Link>
+        </div>
       </nav>
       <Routes>
         <Route path="/" element={<Browse />} /> 

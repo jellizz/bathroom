@@ -13,32 +13,44 @@
   color: var(--text);
 }
 
-.browse-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 24px;
+.search-section {
+  margin-bottom: 16px;
 }
 
-.browse-actions input {
-  flex: 1 1 320px;
-  min-width: 220px;
+.search-section input {
+  width: 100%;
+  max-width: 500px;
   padding: 10px 12px;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: #fff;
 }
 
-.browse-actions button {
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.filter-section select {
+  min-width: 140px;
+}
+
+.filter-section button {
   flex: 0 0 auto;
 }
 
 .bathroom-list {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
+  max-width: 100%;
 }
 
 .browse-page > a {
-  display: inline-block;
-  margin-top: 24px;
+  display: block;
+  margin-top: 32px;
+  text-align: center;
 }

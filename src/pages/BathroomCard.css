@@ -1,21 +1,29 @@
 .bathroom-card {
   text-align: left;
-  border: 1px solid var(--accent);
+  border: 0px solid var(--accent);
   padding: 20px;
   margin: 10px 0;
   background-color: #bde0ee;
   border-radius: 14px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+  max-width: 600px;
 }
 
 .bathroom-card h3 {
   margin-top: 0;
   color: #242424;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .bathroom-card p {
   margin: 8px 0;
   line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .bathroom-card a {
