@@ -23,3 +23,17 @@ backend/service_account.json
 *.njsproj
 *.sln
 *.sw?
+
+# Service account key
+service-account-key.json
+*-key.json
+*.key.json
+
+# Firebase service account
+*.pem
+*.p12
+
+# Environment variables
+.env
+.env.local
+.env.*.local

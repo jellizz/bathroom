@@ -2,14 +2,32 @@ const express = require('express')
 const cors = require('cors')
 const admin = require('firebase-admin')
 
+let authMethod = '';
+// login with either google cloud authentication or firebase service key
+// if using service key, save to a file named 'service-account-key.json' in backend
 
-let credential;
-if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-  credential = admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT));
-} else {
+/* 
+HI MARLA. To make the backend pull from firebase, it should work if you do 
+the following in terminal (i think...):
+gcloud auth login
+gcloud config set project cornell-bathroom
+gcloud auth application-default login
+
+^ that is, if you want to log in with google. 
+you may need to download google cloud CLI first to run the above commands
+
+it should also work if you upload your own key to a local file. hopefully.
+*/ 
+try {
   credential = admin.credential.applicationDefault();
+  authMethod = 'Cloud Auth (ADC)';
+  console.log('Using Cloud Application Default Credentials');
+} catch (error) {
+  console.log('Cloud Auth failed, defaulting to service account key');
+  const serviceAccount = require('./service-account-key.json');
+  credential = admin.credential.cert(serviceAccount);
+  authMethod = 'Service Account Key';
 }
-
 
 admin.initializeApp({
   credential,
@@ -29,24 +47,24 @@ const reviews = require('./data/reviews.json')
 
 // get all bathrooms 
 app.get('/api/bathrooms', async (req, res) => {
-  res.json(bathrooms)
-  /* try {
+/*   res.json(bathrooms) */
+  try {
     const snapshot = await db.collection('bathrooms').get()
     const bathrooms = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
     res.json(bathrooms)
   } catch (error) {
     res.status(500).json({ message: error.message })
-  } */
+  }
 })
 
 // get a specific bathroom based on id
 app.get('/api/bathrooms/:id', async (req, res) => {
-  const bathroom = bathrooms.find(b => b.id === Number(req.params.id))
+/*   const bathroom = bathrooms.find(b => b.id === Number(req.params.id))
   if (!bathroom) { 
     return res.status(404).json({ message: `Bathroom with id ${req.params.id} not found` })
   }
-  res.json(bathroom)
-  /* try {
+  res.json(bathroom) */
+  try {
     const doc = await db.collection('bathrooms').doc(req.params.id).get()
     if (!doc.exists) {
       return res.status(404).json({ message: `Bathroom with id ${req.params.id} not found` })
@@ -54,14 +72,14 @@ app.get('/api/bathrooms/:id', async (req, res) => {
     res.json({ id: doc.id, ...doc.data() })
   } catch (error) {
     res.status(500).json({ message: error.message })
-  } */
+  }
 })
 
 // get a specific bathroom's reviews based on id
 app.get('/api/bathrooms/:id/reviews', async (req, res) => {
-/*   const bathroomReviews = reviews.filter(r => r.bathroomId === Number(req.params.id))
-  res.json(bathroomReviews) */
-  try {
+  const bathroomReviews = reviews.filter(r => r.bathroomId === Number(req.params.id))
+  res.json(bathroomReviews)
+/*   try {
     const snapshot = await db.collection('reviews')
         .where('bathroomId', '==', req.params.id)
         .get()
@@ -69,7 +87,7 @@ app.get('/api/bathrooms/:id/reviews', async (req, res) => {
       res.json(reviews)
   } catch (error) {
     res.status(500).json({ message: error.message })
-  }
+  } */
 })
 
 // This is good practice for PUSHing info to server (such as a user liking a review)
