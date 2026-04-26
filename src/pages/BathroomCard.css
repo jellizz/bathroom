@@ -36,7 +36,9 @@
 
 /* "here" link */
 .bathroom-card a {
-  color: rgb(77, 63, 230);
+  color: rgb(255, 250, 159);
   text-decoration: underline;
   font-size: 16px;
+  text-shadow: 0 0 3px rgba(0,0,0,0.5);
+  font-weight: 600;
 }
