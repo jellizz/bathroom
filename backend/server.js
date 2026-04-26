@@ -4,36 +4,51 @@ const admin = require('firebase-admin')
 
 let credential;
 let authMethod = '';
-// login with either google cloud authentication or firebase service key
-// if using service key, save to a file named 'service-account-key.json' in backend
 
-/* 
-HI MARLA. To make the backend pull from firebase, it should work if you do 
-the following in terminal (i think...):
-gcloud auth login
-gcloud config set project cornell-bathroom
-gcloud auth application-default login
+if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+  try {
+    const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+    credential = admin.credential.cert(serviceAccount);
+    authMethod = 'Environment Variable (Service Account)';
+    console.log('Using Firebase credentials from environment variable');
+  } catch (error) {
+    console.error('Failed to parse FIREBASE_SERVICE_ACCOUNT:', error.message);
+  }
+} else {
+  // login with either google cloud authentication or firebase service key
+  // if using service key, save to a file named 'service-account-key.json' in backend
 
-^ that is, if you want to log in with google. 
-you may need to download google cloud CLI first to run the above commands
+  /* 
+  HI MARLA. To make the backend pull from firebase, it should work if you do 
+  the following in terminal (i think...):
+  gcloud auth login
+  gcloud config set project cornell-bathroom
+  gcloud auth application-default login
 
-it should also work if you upload your own key to a local file. hopefully.
-*/ 
-try {
-  credential = admin.credential.applicationDefault();
-  authMethod = 'Cloud Auth (ADC)';
-  console.log('Using Cloud Application Default Credentials');
-} catch (error) {
-  console.log('Cloud Auth failed, defaulting to service account key');
-  const serviceAccount = require('./service-account-key.json');
-  credential = admin.credential.cert(serviceAccount);
-  authMethod = 'Service Account Key';
+  ^ that is, if you want to log in with google. 
+  you may need to download google cloud CLI first to run the above commands
+
+  it should also work if you upload your own key to a local file. hopefully.
+  */ 
+  try {
+    credential = admin.credential.applicationDefault();
+    authMethod = 'Cloud Auth (ADC)';
+    console.log('Using Cloud Application Default Credentials');
+  } catch (error) {
+    console.log('Cloud Auth failed, defaulting to service account key');
+    const serviceAccount = require('./service-account-key.json');
+    credential = admin.credential.cert(serviceAccount);
+    authMethod = 'Service Account Key';
+  }
 }
 
 admin.initializeApp({
   credential,
   projectId: 'cornell-bathroom'
 })
+
+
+console.log(`Auth method: ${authMethod}`);
 
 const db = admin.firestore() 
 const app = express()
