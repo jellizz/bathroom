@@ -57,6 +57,18 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+// testing api endpoint (for bathroom reviews) to see if backend works
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'Test route works!', timestamp: new Date().toISOString() });
+});
+
+// debug for backend receiving
+app.use((req, res, next) => {
+  console.log(`📥 ${req.method} ${req.url}`);
+  next();
+});
+
+
 // because we don't have a database yet, I hardcoded some bathroom data to test the API routes.
 // will be removed once we have a database we can pull from instead.
 
@@ -204,10 +216,16 @@ app.delete('/api/bathrooms/:id', async (req, res) => {
 })
 
 // for hosting backened locally
-const PORT = 5001
+/* const PORT = 5001
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`)
-})
+}) */
+if (require.main === module) {
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
 
 // to connect local changes to vercel
 module.exports = app;
