@@ -3,6 +3,7 @@ import { Link, useParams} from 'react-router-dom'
 import type { Bathroom, Review } from '../types'
 import LikeDislikeButton from './LikeDislikeButton'
 import './BathroomDisplay.css'
+import API_BASE from '../config'
 
 // Displays bathroom with details and reviews based on the bathroom id in the url.
 
@@ -15,13 +16,15 @@ const BathroomDisplay = () => {
     
     // access the bathroom information via API, using the bathroom id.
     useEffect(() => {
-        fetch(`http://localhost:5001/api/bathrooms/${id}`) 
+        /* fetch(`http://localhost:5001/api/bathrooms/${id}`)  */
+        fetch(`${API_BASE}/bathrooms/${id}`)
         .then(res => res.json())
         .then(data => setBathroom(data))
         .catch (err => console.error('error fetching this bathroom:', err))
 
         // also need to fetch the reviews
-        fetch(`http://localhost:5001/api/bathrooms/${id}/reviews`).then(res => res.json())
+        /* fetch(`http://localhost:5001/api/bathrooms/${id}/reviews`) */
+        fetch(`${API_BASE}/bathrooms/${id}/reviews`).then(res => res.json())
         .then(data => setReviews(data))
         .catch (err => console.error('error fetching reviews for this bathroom:', err))
 

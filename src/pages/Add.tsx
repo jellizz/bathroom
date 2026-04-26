@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import type { Bathroom } from '../types'
 import './Add.css'
+import API_BASE from '../config'
 
 // Page for adding a new bathroom or reviewing an existing bathroom.
 // Two modes: review existing bathroom (select from dropdown) or add new bathroom (fill out form).
@@ -29,7 +30,8 @@ const Add = () => {
 
     // Fetch bathrooms for the review form dropdown
     useEffect(() => {
-        fetch('http://localhost:5001/api/bathrooms')
+        /* fetch('http://localhost:5001/api/bathrooms') */
+        fetch(`${API_BASE}/bathrooms`)
             .then(res => res.json())
             .then((data: Bathroom[]) => setBathrooms(data))
             .catch(err => console.error('error fetching bathrooms:', err))
