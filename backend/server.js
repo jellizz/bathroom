@@ -29,6 +29,8 @@ if (process.env.FIREBASE_SERVICE_ACCOUNT) {
   you may need to download google cloud CLI first to run the above commands
 
   it should also work if you upload your own key to a local file. hopefully.
+
+  Marla: TY!!!!!
   */ 
   try {
     credential = admin.credential.applicationDefault();

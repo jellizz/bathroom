@@ -19,12 +19,12 @@ const reviews = require('./data/reviews.json')
 async function importData() {
   console.log('Importing bathrooms...')
   for (const bathroom of bathrooms) {
-    await db.collection('bathrooms').doc(bathroom.id.toString()).set(bathroom)
+    await db.collection('bathrooms').add(bathroom) // need randomly generated ids
   }
   
   console.log('Importing reviews...')
   for (const review of reviews) {
-    await db.collection('reviews').doc(review.id.toString()).set(review)
+    await db.collection('reviews').add(review)
   }
   
   console.log('All data imported!')
