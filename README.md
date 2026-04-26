@@ -25,4 +25,15 @@ BACKEND SETUP
 
     Using Service Account Key:
         1. Put key into a file named 'service-account-key.json' in the 'backend' directory.
+
+BACKEND ARCHITECTURE
+    Local Server
+        Command: node backend/server.js
+        Runs on localhost:5001
+    Vercel Dev
+        Command: vercel dev
+        Runs on localhost:3000
+        Use to locally test Vercel deployment
+    Production
+        Linked
 ```
