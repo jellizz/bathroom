@@ -40,7 +40,7 @@ button:disabled {
 body {
   margin: 0;
   padding: 0;
-  background-image: url('public/tiles.jpg'); /* Or URL from internet */
+  background-image: url('/tiles.jpg'); /* Or URL from internet */
   background-size: 25%;
   background-position: center top;
   background-repeat: repeat;
