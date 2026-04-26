@@ -70,3 +70,4 @@ node_modules/
 
 
 echo "service-account-key.json" >> backend/.gitignore
+.vercel

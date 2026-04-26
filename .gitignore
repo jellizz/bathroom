@@ -7,11 +7,15 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+node_modules/
+backend/node_modules/
 dist
 dist-ssr
 *.local
 backend/service_account.json
+service-account-key.json
+*-key.json
+*.key.json
 
 # Editor directories and files
 .vscode/*
@@ -24,11 +28,6 @@ backend/service_account.json
 *.sln
 *.sw?
 
-# Service account key
-service-account-key.json
-*-key.json
-*.key.json
-
 # Firebase service account
 *.pem
 *.p12
@@ -37,3 +36,4 @@ service-account-key.json
 .env
 .env.local
 .env.*.local
+.vercel

@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const admin = require('firebase-admin')
 
+let credential;
 let authMethod = '';
 // login with either google cloud authentication or firebase service key
 // if using service key, save to a file named 'service-account-key.json' in backend
@@ -185,7 +186,11 @@ app.delete('/api/bathrooms/:id', async (req, res) => {
   }
 })
 
+// for hosting backened locally
 const PORT = 5001
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`)
 })
+
+// to connect local changes to vercel
+module.exports = app;

@@ -4,6 +4,7 @@ import type { Bathroom } from '../types'
 import BathroomCard from './BathroomCard'
 import Paginator from './Paginator'
 import './Browse.css'
+import API_BASE from '../config';
 
 // the main page that users see upon visiting the site.
 // Displays a list of bathrooms (hardcoded) and a button to add a new bathroom.
@@ -23,7 +24,8 @@ const Browse = () => {
     // access entire bathroom list via API, set bathrooms state variable to the returned data
     // useEffect so its when it "mounts" (i.e. when the page first loads)
     useEffect(() => {
-        fetch('http://localhost:5001/api/bathrooms')
+        /* fetch('http://localhost:5001/api/bathrooms') */
+        fetch(`${API_BASE}/bathrooms`)
         .then(res => res.json())
         .then((data: Bathroom[]) => setBathrooms(data))
         .catch(err => console.error('error fetching bathrooms:', err))
