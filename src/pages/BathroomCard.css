@@ -3,7 +3,10 @@
   border: 0px solid var(--accent);
   padding: 20px;
   margin: 10px 0;
-  background-color: #bde0ee;
+  /* background-color: #bde0ee; */
+  background-image: url('/toilet-paper-2.jpg');
+  background-repeat: repeat;
+  background-size: 200px;
   border-radius: 14px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
   word-wrap: break-word;

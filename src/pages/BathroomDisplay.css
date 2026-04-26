@@ -66,7 +66,8 @@
 
 .display-page .review-list {
   text-align: left;
-  border: 1px solid var(--accent);
+  /* border: 1px solid var(--accent); */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: 10px 0 24px;
   background-color: #bde0ee;
