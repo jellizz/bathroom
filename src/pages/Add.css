@@ -3,6 +3,7 @@
   max-width: 980px;
   margin: 0 auto;
   text-align: center;
+  overflow: hidden;
 }
 
 .add-page h1 {

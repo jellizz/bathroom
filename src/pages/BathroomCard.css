@@ -34,9 +34,9 @@
   font-weight: 700;
 }
 
-
+/* "here" link */
 .bathroom-card a {
-  color: rgb(54, 95, 145);
+  color: rgb(77, 63, 230);
   text-decoration: underline;
   font-size: 16px;
 }

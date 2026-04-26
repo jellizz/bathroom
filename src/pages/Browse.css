@@ -99,6 +99,11 @@
   width: 100%;
   max-width: 600px;
   font-size: 14px;
+  position: relative;
+  background-image: url('/toilet-paper-2.jpg');
+  background-repeat: repeat;
+  background-size: 200px;
+  color: rgb(49, 66, 87);
 }
 
 .browse-page > a {
