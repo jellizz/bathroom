@@ -10,19 +10,19 @@ FEATURES
 
 
 BACKEND SETUP
-Using Cloud Authentication:
-1. Install Google Cloud CLI
-2. Navigate to backend folder:
-    cd backend    
-2. Authenticate your Google account:
-    gcloud auth login
-3. Select this Firebase project: 
-    gcloud config set project cornell-bathroom
-4. Set up local credentials:
-    gcloud auth application-default login
-5. Start the server:
-    node server.js
+    Using Cloud Authentication:
+        1. Install Google Cloud CLI
+        2. Navigate to backend folder:
+            cd backend    
+        2. Authenticate your Google account:
+            gcloud auth login
+        3. Select this Firebase project: 
+            gcloud config set project cornell-bathroom
+        4. Set up local credentials:
+            gcloud auth application-default login
+        5. Start the server:
+            node server.js
 
-Using Service Account Key:
-1. Put key into a file named 'service-account-key.json' in the 'backend' directory.
+    Using Service Account Key:
+        1. Put key into a file named 'service-account-key.json' in the 'backend' directory.
 ```
