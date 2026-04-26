@@ -37,3 +37,5 @@ service-account-key.json
 .env.local
 .env.*.local
 .vercel
+
+pnpm-lock.yaml
