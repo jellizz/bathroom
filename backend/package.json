@@ -12,7 +12,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "cours": "^1.0.0",
+    "cors": "^1.0.0",
     "express": "^5.2.1",
     "firebase-admin": "^13.8.0"
   }
