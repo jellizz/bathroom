@@ -5,14 +5,7 @@ import type { User } from 'firebase/auth';
 import './Login.css'; 
 
 export default function LoginButton() {
-  const [user, setUser] = useState<User | null>(null); // allows us to acces the user
- 
-  // NOTE: user information includes:
-  // displayName: string | null;
-  // email: string | null;
-  // photoURL: string | null;
-  // uid: string;
-
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {

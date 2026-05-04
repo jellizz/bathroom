@@ -25,13 +25,13 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Browse />} /> 
-        <Route path="/bathroom/:firebaseId" element={<BathroomDisplay />} />
+        <Route path="/bathroom/:id" element={<BathroomDisplay />} />
         <Route path="/add" element={<Add />} />
       </Routes>
     </BrowserRouter>
   )
 }
 
-// NOTE: according to React Router docs, can use useParams to access bathroom firebaseId from URL.
+// NOTE: according to React Router docs, can use useParams to access bathroom id from URL.
 
 export default App

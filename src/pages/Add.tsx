@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import type { Bathroom } from '../types'
-import { auth } from '../firebase'
 import './Add.css'
 import API_BASE from '../config'
 
 // Page for adding a new bathroom or reviewing an existing bathroom.
 // Two modes: review existing bathroom (select from dropdown) or add new bathroom (fill out form).
-
+// For now, just we are just console.log-ing the form data on submit... can connect to backend later!
 
 const Add = () => {
     const [mode, setMode] = useState<'review' | 'new'>('review')
@@ -39,82 +38,36 @@ const Add = () => {
     }, [])
 
     // resets the form when we switch modes
-    const handleReviewSubmit = async (e: React.FormEvent) => {
+    const handleReviewSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-
-        const user = auth.currentUser
-        if (!user) {
-            alert('Log in to submit a review')
-            return
-        }
-
-        try {
-            const token = await user.getIdToken()
-            const res = await fetch(`${API_BASE}/reviews`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    bathroomId: selectedBathroomId,
-                    text: reviewText,
-                    rating: reviewRating,
-                    date
-                })
-            })
-            const data = await res.json()
-
-            if (!res.ok) {
-                throw new Error(data.message || 'Could not submit review')
-            }
-
-            alert('Review submitted!')
-        } catch (error) {
-            console.error('error submitting review:', error)
-            alert(error instanceof Error ? error.message : 'Could not submit review')
-            return
-        }
-
+        console.log({
+            type: 'review_existing',
+            bathroomId: selectedBathroomId,
+            reviewText,
+            rating: reviewRating,
+            date
+        })
+        alert('Review submitted!')
         setReviewText('')
         setReviewRating(3) // defaults to mid rating
         setSelectedBathroomId('')
     }
 
-    const handleNewBathroomSubmit = async (e: React.FormEvent) => {
+    const handleNewBathroomSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-
-        try {
-            const res = await fetch(`${API_BASE}/bathrooms`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: bathroomName,
-                    description,
-                    gender,
-                    campus,
-                    rating: newBathroomRating,
-                    wheelchairAccessible,
-                    singleStall,
-                    hasShower,
-                    date
-                })
-            })
-            const data = await res.json()
-
-            if (!res.ok) {
-                throw new Error(data.message || 'Could not submit bathroom')
-            }
-
-            alert('New bathroom submitted!')
-        } catch (error) {
-            console.error('error submitting bathroom:', error)
-            alert(error instanceof Error ? error.message : 'Could not submit bathroom')
-            return
-        }
-
+        console.log({ // need to actually connect to database...
+            type: 'new_bathroom',
+            bathroomName,
+            description,
+            gender,
+            campus,
+            rating: newBathroomRating,
+            wheelchairAccessible,
+            singleStall,
+            hasShower,
+            date
+        })
+        alert('New bathroom submitted!')
         setBathroomName('')
         setDescription('')
         setGender('')
@@ -161,7 +114,7 @@ const Add = () => {
                             >
                                 <option value="">-- Choose a bathroom --</option>
                                 {bathrooms.map(b => (
-                                    <option key={b.firebaseId} value={b.firebaseId}>
+                                    <option key={b.id} value={b.id}>
                                         {b.name} ({b.campus} Campus)
                                     </option>
                                 ))}

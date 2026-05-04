@@ -20,7 +20,7 @@ const BathroomCard = ({ bathroom }: Props) => {
       <p>Campus: {bathroom.campus}</p>
       <p>
         <strong>Read bathroom goers' reviews </strong>
-        <Link to={`/bathroom/${bathroom.firebaseId}`}>here</Link>
+        <Link to={`/bathroom/${bathroom.id}`}>here</Link>
       </p>
     </div>
   )
