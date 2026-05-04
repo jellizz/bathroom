@@ -41,29 +41,28 @@ const BathroomDisplay = () => {
     }, [id]) // dependent on firebaseId in url.
 
     // delete button should only show up if the user is logged in and is the KNOWN author of the review.
-    const handleDeleteReview = async (reviewId: string) => {
-        if (!window.confirm('Delete this review?')) {
-            return // do nothing if they don't approve of the deletion.
+  const handleDeleteReview = async (reviewId: string) => {
+    if (!window.confirm('Delete this review?')) return
+    try {
+        const res = await fetch(`${API_BASE}/reviews/${reviewId}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: currentUserEmail }),  // ← send email
+        })
+        if (!res.ok) {
+            const err = await res.json()
+            alert(err.message)  // show "Not authorized" etc.
+            return
         }
-        try {
-            const res = await fetch(`${API_BASE}/reviews/${reviewId}`, { method: 'DELETE' })
-            if (!res.ok) throw new Error('Delete failed')
- 
-            // remove from local state
-            // this updates the UI immediately (and assumes delete works on backend, if it doesnt the review will 
-            // just re-appear when we re-fetch the reviews)
-            setReviews(prev => prev.filter(r => r.firebaseId !== reviewId))
- 
-            // re-fetch bathroom so the average rating shown updates
-            fetch(`${API_BASE}/bathrooms/${id}`)
-                .then(r => r.json())
-                .then(data => setBathroom(data))
-        } catch (err) {
-            console.error('error deleting review:', err)
-            alert('Could not delete review. Please try again.')
-        }
+        setReviews(prev => prev.filter(r => r.firebaseId !== reviewId))
+        fetch(`${API_BASE}/bathrooms/${id}`)
+            .then(r => r.json())
+            .then(data => setBathroom(data))
+    } catch (err) {
+        console.error('error deleting review:', err)
+        alert('Could not delete review. Please try again.')
     }
- 
+}
     if (!bathroom) {
         return <p>Loading this bathroom...</p>
     }

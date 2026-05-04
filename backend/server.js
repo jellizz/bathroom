@@ -253,18 +253,28 @@ app.delete('/api/reviews/:firebaseId', async (req, res) => {
   try {
     const reviewRef = db.collection('reviews').doc(req.params.firebaseId)
     const review = await reviewRef.get()
- 
+
     if (!review.exists) {
       return res.status(404).json({ message: 'Review not found' })
     }
- 
-    const { bathroomId } = review.data()
+
+    const reviewData = review.data()
+    const { email } = req.body  // email sent from frontend
+
+    // if the review has a known author, verify the caller matches
+    if (reviewData.user?.email) {
+      if (!email || email !== reviewData.user.email) {
+        return res.status(403).json({ message: 'Not authorized to delete this review' })
+      }
+    }
+
+    const { bathroomId } = reviewData
     await reviewRef.delete()
- 
+
     if (bathroomId) {
       await updateBathroomAverageRating(bathroomId)
     }
- 
+
     res.json({ message: `Deleted review ${req.params.firebaseId}` })
   } catch (error) {
     res.status(500).json({ message: error.message })
