@@ -40,8 +40,8 @@ export default function Profile() {
       ]);
       
       setUserReviews([
-        { firebaseId: '1', text: 'kinda really crusty my eyes literally water and i start gagging when i step inside.', rating: 1, bathroomName: 'Baker Lab 2nd Floor', createdAt: '2024-04-01' },
-        { firebaseId: '2', text: 'it smellllsss omfg why does it smell. there are too many people using it too, so i can never poop in peace.', rating: 2, bathroomName: 'Uris Library 1st Floor', createdAt: '2024-04-02' },
+        { firebaseId: '1', text: 'kinda really crusty my eyes literally water and i start gagging when i step inside.', rating: 1, bathroomName: 'Baker Lab 2nd Floor', createdAt: '04-15-2025' },
+        { firebaseId: '2', text: 'it smellllsss omfg why does it smell. there are too many people using it too, so i can never poop in peace.', rating: 2, bathroomName: 'Uris Library 1st Floor', createdAt: '05-01-2025' },
       ]);
       
       setLoading(false);
