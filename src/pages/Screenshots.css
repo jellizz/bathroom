@@ -1,0 +1,257 @@
+Screenshots · CSS
+Copy
+
+/* Screenshots.css */
+ 
+.screenshots-page {
+  padding: 24px 20px 60px;
+  max-width: 860px;
+  margin: 0 auto;
+  font-family: 'Nunito', sans-serif;
+}
+ 
+/* ── Hero ── */
+.screenshots-hero {
+  text-align: center;
+  margin-bottom: 48px;
+  padding: 40px 24px 36px;
+  background-image: url('/toilet-paper-2.jpg');
+  background-repeat: repeat;
+  background-size: 200px;
+  border: 2px solid rgb(49, 66, 87);
+  border-radius: 20px;
+  box-shadow: 6px 6px 0 rgb(49, 66, 87);
+}
+ 
+.screenshots-hero h1 {
+  font-size: 64px;
+  font-weight: 900;
+  color: rgb(49, 66, 87);
+  text-shadow: 2px 2px 0 rgba(255,255,255,0.7);
+  margin: 0 0 14px;
+  line-height: 1.1;
+}
+ 
+.screenshots-subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(49, 66, 87);
+  max-width: 580px;
+  margin: 0 auto 20px;
+  line-height: 1.5;
+}
+ 
+.screenshots-years-badge {
+  display: inline-block;
+  background: rgb(49, 66, 87);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+ 
+/* ── Sections ── */
+.screenshots-section {
+  margin-bottom: 52px;
+}
+ 
+.section-heading {
+  font-size: 32px;
+  font-weight: 900;
+  color: rgb(49, 66, 87);
+  margin: 0 0 6px;
+}
+ 
+.section-sub {
+  font-size: 17px;
+  font-weight: 500;
+  color: #666;
+  margin: 0 0 28px;
+}
+ 
+/* ── Quotes ── */
+.quotes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+ 
+/* stagger the pop-in animation */
+.quotes-container > *:nth-child(1) { animation-delay: 0.05s; }
+.quotes-container > *:nth-child(2) { animation-delay: 0.15s; }
+.quotes-container > *:nth-child(3) { animation-delay: 0.25s; }
+.quotes-container > *:nth-child(4) { animation-delay: 0.35s; }
+.quotes-container > *:nth-child(5) { animation-delay: 0.45s; }
+ 
+.reddit-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+ 
+.reddit-link {
+  display: inline-block;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(49, 66, 87);
+  background: #fff;
+  border: 1.5px solid rgb(49, 66, 87);
+  border-radius: 8px;
+  padding: 6px 14px;
+  text-decoration: none;
+  box-shadow: 2px 2px 0 rgb(49, 66, 87);
+  transition: all 0.15s ease;
+}
+ 
+.reddit-link:hover {
+  background: rgb(163, 183, 213);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 rgb(49, 66, 87);
+}
+ 
+/* ── Gatekeeping ── */
+.gatekeeping-section {
+  background-image: url('/toilet-paper-2.jpg');
+  background-repeat: repeat;
+  background-size: 200px;
+  border: 2px solid rgb(49, 66, 87);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: 6px 6px 0 rgb(49, 66, 87);
+}
+ 
+.gatekeeping-layout {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+ 
+.gatekeeping-image-wrap {
+  flex: 1 1 280px;
+}
+ 
+.gatekeeping-img {
+  width: 100%;
+  max-width: 340px;
+  border-radius: 12px;
+  border: 2px solid rgb(49, 66, 87);
+  box-shadow: 4px 4px 0 rgb(49, 66, 87);
+  display: block;
+}
+ 
+.gatekeeping-caption {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  font-style: italic;
+}
+ 
+.gatekeeping-callout {
+  flex: 1 1 240px;
+  background: #fffdf7;
+  border: 2px solid rgb(49, 66, 87);
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 4px 4px 0 rgb(49, 66, 87);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: center;
+}
+ 
+.callout-emoji {
+  font-size: 36px;
+  line-height: 1;
+}
+ 
+.gatekeeping-callout p {
+  font-size: 17px;
+  font-weight: 500;
+  color: rgb(49, 66, 87);
+  margin: 0;
+  line-height: 1.6;
+}
+ 
+.gatekeeping-callout strong {
+  font-weight: 900;
+}
+ 
+/* ── CTA ── */
+.screenshots-cta {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgb(49, 66, 87);
+  border-radius: 20px;
+  color: #fff;
+}
+ 
+.screenshots-cta h2 {
+  font-size: 36px;
+  font-weight: 900;
+  margin: 0 0 10px;
+}
+ 
+.screenshots-cta p {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 28px;
+  opacity: 0.85;
+}
+ 
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+ 
+.cta-primary, .cta-secondary {
+  font-family: 'Nunito', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+ 
+.cta-primary {
+  background: #fff;
+  color: rgb(49, 66, 87);
+}
+ 
+.cta-primary:hover {
+  background: rgb(163, 183, 213);
+  transform: translateY(-2px);
+}
+ 
+.cta-secondary {
+  background: transparent;
+  color: #fff;
+}
+ 
+.cta-secondary:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+ 
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .screenshots-hero h1 {
+    font-size: 42px;
+  }
+  .section-heading {
+    font-size: 26px;
+  }
+  .gatekeeping-layout {
+    flex-direction: column;
+  }
+}

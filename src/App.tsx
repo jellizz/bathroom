@@ -4,12 +4,12 @@ import LoginButton from './pages/Login'
 import Browse from './pages/Browse'
 import Add from './pages/Add'
 import BathroomDisplay from './pages/BathroomDisplay'
+import Screenshots from './pages/Screenshots'
 
 // The main app component. Allows "routing" to different pages using React Router! Yay!
 // Has upper navigation bar for accessing different pages
 // and defines routes (i.e. URL paths) for the browse page, individual bathroom pages, and the add page.
 
-// TODO: add a map page...?
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <img src="/toiletlogored.svg" alt="Logo" style={{ height: '60px' }} />
           <Link to="/">Browse</Link>
           <Link to="/add">Add Bathroom</Link>
-          <span>Bathroom Map (not yet implemented)</span>
+          <Link to="/whycornellbathrooms">What the people have to say...</Link>
           <LoginButton></LoginButton>
         </div>
       </nav>
@@ -27,6 +27,7 @@ function App() {
         <Route path="/" element={<Browse />} /> 
         <Route path="/bathroom/:id" element={<BathroomDisplay />} />
         <Route path="/add" element={<Add />} />
+        <Route path="/whycornellbathrooms" element={<Screenshots />} />
       </Routes>
     </BrowserRouter>
   )

@@ -1,0 +1,107 @@
+
+ 
+.quote-bubble-wrapper {
+  display: flex;
+  width: 100%;
+  margin: 18px 0;
+  animation: bubblePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+ 
+.quote-bubble-wrapper.side-left  { justify-content: flex-start; }
+.quote-bubble-wrapper.side-right { justify-content: flex-end; }
+.quote-bubble-wrapper.side-center { justify-content: center; }
+ 
+@keyframes bubblePop {
+  0%   { opacity: 0; transform: scale(0.85) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+ 
+.quote-bubble {
+  position: relative;
+  max-width: 520px;
+  background: #fffdf7;
+  border: 2px solid rgb(49, 66, 87);
+  border-radius: 18px;
+  padding: 16px 20px 14px;
+  box-shadow: 4px 4px 0px rgb(49, 66, 87);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+ 
+.quote-bubble:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px rgb(49, 66, 87);
+}
+ 
+.quote-bubble.highlight {
+  background: #fff5e4;
+  border-color: #c0392b;
+  box-shadow: 4px 4px 0px #c0392b;
+}
+ 
+.quote-bubble.highlight:hover {
+  box-shadow: 6px 6px 0px #c0392b;
+}
+ 
+.quote-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+ 
+.quote-subreddit {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  background: rgb(49, 66, 87);
+  color: #fff;
+  border-radius: 6px;
+  padding: 2px 8px;
+  letter-spacing: 0.02em;
+}
+ 
+.quote-username {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+}
+ 
+.quote-upvotes {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #e07000;
+  margin-left: auto;
+}
+ 
+.quote-text {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(49, 66, 87);
+  margin: 0;
+  line-height: 1.55;
+  font-style: italic;
+}
+ 
+/* little tail */
+.quote-bubble-wrapper.side-left  .bubble-tail { left: 22px;  }
+.quote-bubble-wrapper.side-right .bubble-tail { right: 22px; }
+.quote-bubble-wrapper.side-center .bubble-tail { left: 50%; transform: translateX(-50%); }
+ 
+.bubble-tail {
+  position: absolute;
+  bottom: -13px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 13px solid rgb(49, 66, 87);
+}
+ 
+.quote-bubble.highlight .bubble-tail {
+  border-top-color: #c0392b;
+}
+ 

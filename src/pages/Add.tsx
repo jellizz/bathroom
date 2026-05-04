@@ -4,7 +4,7 @@ import type { Bathroom } from '../types'
 import './Add.css'
 import API_BASE from '../config'
 
-// Page for adding a new bathroom or reviewing an existing bathroom.
+// Page for adding a new bathroom or reviewing an existing bathroom (adds to database)
 // Two modes: review existing bathroom (select from dropdown) or add new bathroom (fill out form).
 
 const Add = () => {
@@ -73,7 +73,7 @@ const Add = () => {
         setReviewText('')
         setReviewRating(3) // defaults to mid rating
         setSelectedBathroomId('')
-        navigate(`/bathroom/${bathroomId}`)
+        navigate(`/bathroom/${bathroomId}`) // navigate to the bathroom page for the bathroom that was just reviewed
     }
 
     const handleNewBathroomSubmit = async (e: React.FormEvent) => {
@@ -96,6 +96,7 @@ const Add = () => {
             }),
         })
 
+
         if (!response.ok) {
             alert('There was a problem submitting this bathroom.')
             return
@@ -114,9 +115,9 @@ const Add = () => {
         setWheelchairAccessible(false)
         setSingleStall(false)
         setHasShower(false)
+       
     }
 
-    // TODO: the top bar should be a component, instead of reusing this text every time...
     return (
         <div className="add-page">
             <h1>Cornell Bathrooms 🚽</h1>
