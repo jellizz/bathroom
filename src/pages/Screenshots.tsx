@@ -1,5 +1,4 @@
 
-// Screenshots.tsx
 // Displays reddit posts + community quotes showing the NEED for this website.
  
 import { Link } from 'react-router-dom'
@@ -48,7 +47,6 @@ const quotes = [
 const Screenshots = () => {
   return (
     <div className="screenshots-page">
-      {/* Hero */}
       <div className="screenshots-hero">
         <h1>Why Cornell Bathrooms? 🚽</h1>
         <p className="screenshots-subtitle">
@@ -64,7 +62,7 @@ const Screenshots = () => {
       <section className="screenshots-section">
         <h2 className="section-heading">What people are saying 💬</h2>
         <p className="section-sub">
-          These are real Reddit posts from r/Cornell. The demand is real.
+          (okay these might be made up quotes but trust us... they could be real. also see the link below for real reddit posts!)
         </p>
         <div className="quotes-container">
           {quotes.map((q, i) => (
@@ -85,7 +83,7 @@ const Screenshots = () => {
             rel="noopener noreferrer"
             className="reddit-link"
           >
-            🔗 See the tier list thread
+            🔗 See the tier list thread.
           </a>
           <a
             href="https://www.reddit.com/r/Cornell/comments/9j3srw/20_year_old_male_looking_for_a_clean_pooping/"
@@ -93,7 +91,7 @@ const Screenshots = () => {
             rel="noopener noreferrer"
             className="reddit-link"
           >
-            🔗 The OG pooping post (2018)
+            🔗 A post from 2018... Why hasn't this been made yet?
           </a>
         </div>
       </section>

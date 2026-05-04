@@ -79,7 +79,7 @@ Copy
   margin-bottom: 24px;
 }
  
-/* stagger the pop-in animation */
+/* adding an animation to the text bubbles */ 
 .quotes-container > *:nth-child(1) { animation-delay: 0.05s; }
 .quotes-container > *:nth-child(2) { animation-delay: 0.15s; }
 .quotes-container > *:nth-child(3) { animation-delay: 0.25s; }
