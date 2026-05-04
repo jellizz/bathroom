@@ -18,20 +18,7 @@ if (process.env.FIREBASE_SERVICE_ACCOUNT) {
   // login with either google cloud authentication or firebase service key
   // if using service key, save to a file named 'service-account-key.json' in backend
 
-  /* 
-  HI MARLA. To make the backend pull from firebase, it should work if you do 
-  the following in terminal (i think...):
-  gcloud auth login
-  gcloud config set project cornell-bathroom
-  gcloud auth application-default login
 
-  ^ that is, if you want to log in with google. 
-  you may need to download google cloud CLI first to run the above commands
-
-  it should also work if you upload your own key to a local file. hopefully.
-
-  Marla: TY!!!!!
-  */ 
   try {
     credential = admin.credential.applicationDefault();
     authMethod = 'Cloud Auth (ADC)';
@@ -256,6 +243,29 @@ app.delete('/api/bathrooms/:firebaseId', async (req, res) => {
   try {
     await db.collection('bathrooms').doc(req.params.firebaseId).delete()
     res.json({ message: `Deleted bathroom ${req.params.firebaseId}` })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+})
+
+// DELETES a review
+app.delete('/api/reviews/:firebaseId', async (req, res) => {
+  try {
+    const reviewRef = db.collection('reviews').doc(req.params.firebaseId)
+    const review = await reviewRef.get()
+ 
+    if (!review.exists) {
+      return res.status(404).json({ message: 'Review not found' })
+    }
+ 
+    const { bathroomId } = review.data()
+    await reviewRef.delete()
+ 
+    if (bathroomId) {
+      await updateBathroomAverageRating(bathroomId)
+    }
+ 
+    res.json({ message: `Deleted review ${req.params.firebaseId}` })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

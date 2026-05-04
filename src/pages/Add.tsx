@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import type { Bathroom } from '../types'
 import './Add.css'
 import API_BASE from '../config'
+import { getAuth } from 'firebase/auth/web-extension'
 
 // Page for adding a new bathroom or reviewing an existing bathroom (adds to database)
 // Two modes: review existing bathroom (select from dropdown) or add new bathroom (fill out form).
@@ -44,37 +45,45 @@ const Add = () => {
     }, [])
 
     // 
-    const handleReviewSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        const bathroomId = selectedBathroomId
+const handleReviewSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const bathroomId = selectedBathroomId
+    const authUser = getAuth().currentUser  // gets user info if they're logged in, otherwise null
 
-        const response = await fetch(`${API_BASE}/reviews`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                bathroomId,
-                text: reviewText,
-                rating: reviewRating,
-                date,
-                likes: 0,
-                dislikes: 0,
+    const response = await fetch(`${API_BASE}/reviews`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            bathroomId,
+            text: reviewText,
+            rating: reviewRating,
+            date,
+            likes: 0,
+            dislikes: 0,
+            ...(authUser && { // puts this if they're logged in
+                user: {
+                    name: authUser.displayName ?? 'Cornell Student',
+                    email: authUser.email,
+                    profilePicture: authUser.photoURL ?? '',
+                }
             }),
-        })
+        }),
+    })
 
-        if (!response.ok) {
-            alert('There was a problem submitting this review.')
-            return
-        }
-
-        await response.json()
-        alert('Review submitted!')
-        setReviewText('')
-        setReviewRating(3) // defaults to mid rating
-        setSelectedBathroomId('')
-        navigate(`/bathroom/${bathroomId}`) // navigate to the bathroom page for the bathroom that was just reviewed
+    if (!response.ok) {
+        alert('There was a problem submitting this review.')
+        return
     }
+
+    await response.json()
+    alert('Review submitted!')
+    setReviewText('')
+    setReviewRating(3)
+    setSelectedBathroomId('')
+    navigate(`/bathroom/${bathroomId}`)
+}
 
     const handleNewBathroomSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -167,7 +176,7 @@ const Add = () => {
                                 rows={4}
                                 value={reviewText}
                                 onChange={(e) => setReviewText(e.target.value)}
-                                placeholder="Tell us about your experience..."
+                                placeholder="Tell us about your experience! Was it clean? Crowded? Did you feel safe? The more details, the better! (P.S. writing directions is always helpful!)"
                                 required
                             />
                         </div>

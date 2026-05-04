@@ -100,7 +100,7 @@ const Screenshots = () => {
       <section className="screenshots-section gatekeeping-section">
         <h2 className="section-heading">The Gatekeeping Problem 🔒</h2>
         <p className="section-sub">
-          Some people think that keeping the best bathrooms a secret is the key to maintaining their cleanliness... but we think that's just gatekeeping! 
+          Some people like to keep bathrooms secret, but we believe everyone deserves to know where the good ones are!
         </p>
         <div className="gatekeeping-layout">
           <div className="gatekeeping-image-wrap">
@@ -110,14 +110,14 @@ const Screenshots = () => {
               className="gatekeeping-img"
             />
             <div className="gatekeeping-caption">
-              🤫 "I'm not telling you which ones are clean, that's how I keep them clean"
+              🤫 "Shhh... Don't tell a soul..."
             </div>
           </div>
           <div className="gatekeeping-callout">
             <span className="callout-emoji">💡</span>
             <p>
               When everyone keeps the best bathrooms a secret, <strong>nobody wins</strong>. Whatever your needs are, whether it's cleaniness, accessibilty, 
-              or just a place you feel safe doing your businessm, you deserve to know where they can be met on campus!
+              or just a place you feel safe doing your business, you deserve to know where they can be met on campus!
               Cornell Bathrooms is the open, crowd-sourced solution we've all needed since 2018.
             </p>
           </div>
