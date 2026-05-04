@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { auth, googleProvider } from '../firebase';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import type { User } from 'firebase/auth';
+import { Link } from 'react-router-dom';
 import './Login.css'; 
 
 export default function LoginButton() {
@@ -33,7 +34,9 @@ export default function LoginButton() {
   if (user) {
     return (
       <div className="user-info">
-        <span className="username">{user.displayName}</span>
+        <Link to="/profile" className="username-link">
+          <span className="username">{user.displayName}</span>
+        </Link>
         <button className="logout-button" onClick={logOut}>Logout</button>
       </div>
     );

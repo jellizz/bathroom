@@ -5,6 +5,7 @@ import Browse from './pages/Browse'
 import Add from './pages/Add'
 import BathroomDisplay from './pages/BathroomDisplay'
 import Screenshots from './pages/Screenshots'
+import Profile from './pages/Profile'
 
 // The main app component. Allows "routing" to different pages using React Router! Yay!
 // Has upper navigation bar for accessing different pages
@@ -28,6 +29,7 @@ function App() {
         <Route path="/bathroom/:id" element={<BathroomDisplay />} />
         <Route path="/add" element={<Add />} />
         <Route path="/whycornellbathrooms" element={<Screenshots />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   )

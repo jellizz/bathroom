@@ -1,0 +1,274 @@
+/* Profile Page - Matches Browse page structure */
+.profile-page {
+  padding: 24px 20px;
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.profile-page h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 45px;
+  font-weight: 800;
+  color: rgb(49, 66, 87);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-header-card {
+  background: url('/toilet-paper-2.jpg');
+  background-size: 400px;
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #55548c;
+  object-fit: cover;
+}
+
+.profile-info h2 {
+  margin: 0 0 8px;
+  color: #2c3e50;
+  font-size: 28px;
+}
+
+.profile-info p {
+  margin: 0 0 15px;
+  color: #002124;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 30px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 28px;
+  font-weight: bold;
+  color: #55548c;
+}
+
+.stat-label {
+  color: #052325;
+  font-size: 14px;
+}
+
+.profile-section {
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.profile-section h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: rgb(49, 66, 87);
+  margin-bottom: 20px;
+  text-align: left;
+  border-left: 4px solid #55548c;
+  padding-left: 15px;
+}
+
+/* llist of bathrooms contributed */
+.profile-page-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 100%;
+  align-items: center;
+}
+
+.profile-page-card {
+  width: 100%;
+  max-width: 600px;
+  background: url('/toilet-paper-2.jpg');
+  background-size: 400px;
+  border-radius: 16px;
+  padding: 20px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.profile-page-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-color: #55548c;
+}
+
+.profile-page-card h3 {
+  margin: 0 0 8px;
+  color: #2c3e50;
+  font-size: 20px;
+}
+
+.profile-page-location {
+  color: #08474b;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.profile-page-date {
+  color: #053d41;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* Reviews List */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 100%;
+  align-items: center;
+}
+
+.review-card {
+  width: 100%;
+  max-width: 600px;
+  background: url('/toilet-paper-2.jpg');
+  background-size: 400px;
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-color: #55548c;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.review-profile-page-name {
+  text-decoration: none;
+}
+
+.review-profile-page-name h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+.review-profile-page-name:hover h3 {
+  color: #55548c;
+}
+
+.review-rating {
+  font-weight: bold;
+  color: #16033a;
+  font-size: 16px;
+}
+
+.review-text {
+  color: #34495e;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.review-date {
+  color: #053e43;
+  font-size: 12px;
+  margin: 0;
+}
+
+.empty-message {
+  text-align: center;
+  color: #04484d;
+  padding: 40px;
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Loading State */
+.profile-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 15px;
+  }
+  
+  .profile-page h1 {
+    font-size: 40px;
+  }
+  
+  .profile-header-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .profile-info {
+    text-align: center;
+  }
+  
+  .profile-stats {
+    justify-content: center;
+  }
+  
+  .profile-section h2 {
+    font-size: 24px;
+  }
+}
+
+
+/* Remove link underlines in profile */
+.profile-page a,
+.profile-page a:link,
+.profile-page a:visited,
+.profile-page a:hover,
+.profile-page a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Keep the card clickable but without underline */
+.profile-page-card {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.review-profile-page-name {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.review-profile-page-name h3 {
+  text-decoration: none;
+}
