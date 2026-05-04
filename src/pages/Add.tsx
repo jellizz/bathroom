@@ -6,7 +6,6 @@ import API_BASE from '../config'
 
 // Page for adding a new bathroom or reviewing an existing bathroom.
 // Two modes: review existing bathroom (select from dropdown) or add new bathroom (fill out form).
-// For now, just we are just console.log-ing the form data on submit... can connect to backend later!
 
 const Add = () => {
     const [mode, setMode] = useState<'review' | 'new'>('review')
@@ -22,7 +21,6 @@ const Add = () => {
     const [bathroomName, setBathroomName] = useState('')
     const [gender, setGender] = useState('')
     const [campus, setCampus] = useState('')
-    const [newBathroomRating, setNewBathroomRating] = useState(3)
     const [wheelchairAccessible, setWheelchairAccessible] = useState(false)
     const [singleStall, setSingleStall] = useState(false)
     const [hasShower, setHasShower] = useState(false)
@@ -88,7 +86,6 @@ const Add = () => {
                 description: generatedDescription,
                 gender,
                 campus,
-                rating: newBathroomRating,
                 wheelchairAccessible,
                 singleStall,
                 hasShower,
@@ -110,7 +107,6 @@ const Add = () => {
         setBathroomName('')
         setGender('')
         setCampus('')
-        setNewBathroomRating(3)
         setWheelchairAccessible(false)
         setSingleStall(false)
         setHasShower(false)
@@ -241,20 +237,6 @@ const Add = () => {
                                 </select>
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="newBathroomRating">Rating:</label>
-                                <select
-                                    id="newBathroomRating"
-                                    value={newBathroomRating}
-                                    onChange={(e) => setNewBathroomRating(Number(e.target.value))}
-                                >
-                                    <option value={1}>1 </option>
-                                    <option value={2}>2</option>
-                                    <option value={3}>3 </option>
-                                    <option value={4}>4 </option>
-                                    <option value={5}>5 </option>
-                                </select>
-                            </div>
                         </div>
 
                         <div className="checkbox-group">

@@ -57,7 +57,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-// strips the 
+// old, for handling weird data id name stuff (ignore)!!
 const dataWithoutClientIds = (data) => {
   const { id, firebaseId, ...rest } = data
   return rest
@@ -74,6 +74,24 @@ const buildBathroomDescription = ({ gender, singleStall, hasShower, wheelchairAc
   const accessibleText = wheelchairAccessible ? 'is' : 'is not'
 
   return `This is a ${gender}, ${stallType} bathroom. It ${showerText} have a shower and ${accessibleText} wheelchair accessible.`
+}
+
+const updateBathroomAverageRating = async (bathroomId) => {
+  const snapshot = await db.collection('reviews')
+    .where('bathroomId', '==', bathroomId)
+    .get()
+
+  const ratings = snapshot.docs
+    .map(doc => doc.data().rating)
+    .filter(rating => typeof rating === 'number')
+
+  const averageRating = ratings.length === 0
+    ? 0
+    : ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
+
+  await db.collection('bathrooms').doc(bathroomId).update({ rating: averageRating })
+
+  return averageRating
 }
 
 // testing api endpoint (for bathroom reviews) to see if backend works
@@ -177,8 +195,25 @@ app.post('/api/reviews', async (req, res) => {
   try {
     const data = dataWithoutClientIds(req.body)
 
+    if (!data.bathroomId) {
+      return res.status(400).json({ message: 'Review must reference an existing bathroom' })
+    }
+
+    if (typeof data.rating !== 'number') {
+      return res.status(400).json({ message: 'Review rating must be a number' })
+    }
+
+    const bathroomRef = db.collection('bathrooms').doc(data.bathroomId)
+    const bathroom = await bathroomRef.get()
+
+    if (!bathroom.exists) {
+      return res.status(400).json({ message: 'Review must reference an existing bathroom' })
+    }
+
     const docRef = await db.collection('reviews').add(data)
-    res.json({ message: 'Review created', firebaseId: docRef.id, data })
+    const bathroomRating = await updateBathroomAverageRating(data.bathroomId)
+
+    res.json({ message: 'Review created', firebaseId: docRef.id, data, bathroomRating })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
@@ -189,6 +224,7 @@ app.post('/api/bathrooms', async (req, res) => {
   try {
     const data = dataWithoutClientIds(req.body)
     data.description = buildBathroomDescription(data)
+    data.rating = 0
 
     const docRef = await db.collection('bathrooms').add(data)
     res.json({ message: 'Bathroom created', firebaseId: docRef.id, data })

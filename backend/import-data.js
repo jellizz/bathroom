@@ -16,13 +16,31 @@ const db = admin.firestore()
 const bathrooms = require('./data/bathrooms.json')
 const reviews = require('./data/reviews.json')
 
+// for finding the avg for uploading...
+const averageRatingForBathroom = (bathroomId) => {
+  const ratings = reviews
+    .filter(review => review.bathroomId === bathroomId)
+    .map(review => review.rating)
+    .filter(rating => typeof rating === 'number')
+
+  if (ratings.length === 0) {
+    return 0
+  }
+
+  return ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
+}
+
 async function importData() {
   console.log('Importing bathrooms...')
   const bathroomIdMap = new Map()
 
   for (const [index, bathroom] of bathrooms.entries()) {
-    const docRef = await db.collection('bathrooms').add(bathroom)
-    bathroomIdMap.set(index + 1, docRef.id)
+    const seedBathroomId = index + 1
+    const docRef = await db.collection('bathrooms').add({
+      ...bathroom,
+      rating: averageRatingForBathroom(seedBathroomId)
+    })
+    bathroomIdMap.set(seedBathroomId, docRef.id)
   }
   
   console.log('Importing reviews...')
