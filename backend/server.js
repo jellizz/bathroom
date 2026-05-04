@@ -170,7 +170,19 @@ app.put('/api/reviews/:firebaseId/dislike', async (req, res) => {
 })
 
 
-// TODO: flesh these out!
+// POSTs a new review, which is then added to the 'reviews' collection in Firebase. 
+// The review data should include a reference to the bathroom's Firebase document ID (bathroomId) 
+// so we know which bathroom the review is for.
+app.post('/api/reviews', async (req, res) => {
+  try {
+    const data = dataWithoutClientIds(req.body)
+
+    const docRef = await db.collection('reviews').add(data)
+    res.json({ message: 'Review created', firebaseId: docRef.id, data })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+})
 
 // makes new bathroom profile
 app.post('/api/bathrooms', async (req, res) => {

@@ -44,38 +44,68 @@ const Add = () => {
             .catch(err => console.error('error fetching bathrooms:', err))
     }, [])
 
-    // resets the form when we switch modes
-    const handleReviewSubmit = (e: React.FormEvent) => {
+    // 
+    const handleReviewSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        console.log({
-            type: 'review_existing',
-            bathroomId: selectedBathroomId,
-            reviewText,
-            rating: reviewRating,
-            date
+
+        const response = await fetch(`${API_BASE}/reviews`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                bathroomId: selectedBathroomId,
+                text: reviewText,
+                rating: reviewRating,
+                date,
+                likes: 0,
+                dislikes: 0,
+            }),
         })
+
+        if (!response.ok) {
+            alert('There was a problem submitting this review.')
+            return
+        }
+
         alert('Review submitted!')
         setReviewText('')
         setReviewRating(3) // defaults to mid rating
         setSelectedBathroomId('')
     }
 
-    const handleNewBathroomSubmit = (e: React.FormEvent) => {
+    const handleNewBathroomSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         const generatedDescription = buildBathroomDescription()
 
-        console.log({ // need to actually connect to database...
-            type: 'new_bathroom',
-            bathroomName,
-            description: generatedDescription,
-            gender,
-            campus,
-            rating: newBathroomRating,
-            wheelchairAccessible,
-            singleStall,
-            hasShower,
-            date
+        const response = await fetch(`${API_BASE}/bathrooms`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: bathroomName,
+                description: generatedDescription,
+                gender,
+                campus,
+                rating: newBathroomRating,
+                wheelchairAccessible,
+                singleStall,
+                hasShower,
+            }),
         })
+
+        if (!response.ok) {
+            alert('There was a problem submitting this bathroom.')
+            return
+        }
+
+        const createdBathroom = await response.json()
+        setBathrooms(prevBathrooms => [
+            ...prevBathrooms,
+            { firebaseId: createdBathroom.firebaseId, ...createdBathroom.data },
+        ])
+
         alert('New bathroom submitted!')
         setBathroomName('')
         setGender('')
