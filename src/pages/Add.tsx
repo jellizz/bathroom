@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import type { Bathroom } from '../types'
 import './Add.css'
 import API_BASE from '../config'
@@ -8,6 +8,7 @@ import API_BASE from '../config'
 // Two modes: review existing bathroom (select from dropdown) or add new bathroom (fill out form).
 
 const Add = () => {
+    const navigate = useNavigate()
     const [mode, setMode] = useState<'review' | 'new'>('review')
     const [bathrooms, setBathrooms] = useState<Bathroom[]>([])
     const [date] = useState(new Date().toISOString().split('T')[0])
@@ -45,6 +46,7 @@ const Add = () => {
     // 
     const handleReviewSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        const bathroomId = selectedBathroomId
 
         const response = await fetch(`${API_BASE}/reviews`, {
             method: 'POST',
@@ -52,7 +54,7 @@ const Add = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                bathroomId: selectedBathroomId,
+                bathroomId,
                 text: reviewText,
                 rating: reviewRating,
                 date,
@@ -66,10 +68,12 @@ const Add = () => {
             return
         }
 
+        await response.json()
         alert('Review submitted!')
         setReviewText('')
         setReviewRating(3) // defaults to mid rating
         setSelectedBathroomId('')
+        navigate(`/bathroom/${bathroomId}`)
     }
 
     const handleNewBathroomSubmit = async (e: React.FormEvent) => {

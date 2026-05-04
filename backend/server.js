@@ -212,8 +212,15 @@ app.post('/api/reviews', async (req, res) => {
 
     const docRef = await db.collection('reviews').add(data)
     const bathroomRating = await updateBathroomAverageRating(data.bathroomId)
+    const updatedBathroom = await bathroomRef.get()
 
-    res.json({ message: 'Review created', firebaseId: docRef.id, data, bathroomRating })
+    res.json({
+      message: 'Review created',
+      firebaseId: docRef.id,
+      data,
+      bathroomRating,
+      bathroom: docWithFirebaseId(updatedBathroom)
+    })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
