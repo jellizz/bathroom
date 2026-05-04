@@ -39,3 +39,16 @@
 .username {
   color: rgb(40, 60, 90);
 }
+
+.username-link {
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.username-link:hover {
+  opacity: 0.7;
+}
+
+.username-link .username {
+  cursor: pointer;
+}
