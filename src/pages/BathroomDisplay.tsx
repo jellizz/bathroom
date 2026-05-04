@@ -73,7 +73,7 @@ const BathroomDisplay = () => {
             <h1>{bathroom.name}</h1>
  
             <ul className="summary-list">
-                <li>Average cleanliness: <strong>{bathroom.rating}/5</strong></li>
+                <li>Average rating: <strong>{bathroom.rating}/5</strong></li>
                 <li>Gender: <strong>{bathroom.gender}</strong></li>
                 <li>Single stall: <strong>{bathroom.singleStall ? 'Yes' : 'No'}</strong></li>
                 <li>Wheelchair accessible: <strong>{bathroom.wheelchairAccessible ? 'Yes' : 'No'}</strong></li>

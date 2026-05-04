@@ -50,11 +50,13 @@
   letter-spacing: -0.5px;
   margin-bottom: 20px;
 }
-
 .display-page .summary-list {
   list-style: none;
-  padding: 0;
+  padding: 12px 18px;
   margin: 16px 0 24px;
+  background-color: #fffad8;
+  border-radius: 12px;
+  display: inline-block;  /* shrinks to fit content instead of full width */
 }
 
 .display-page .summary-list li {
@@ -145,3 +147,8 @@
   color: #fff;
   transform: translateY(-1px);
 }
+.review-actions button {
+  font-size: 13px;
+  padding: 4px 12px;
+}
+
