@@ -52,13 +52,14 @@
 }
 .display-page .summary-list {
   list-style: none;
-  padding: 12px 18px;
+  padding: 14px 20px;
   margin: 16px 0 24px;
-  background-color: #fffad8;
-  border-radius: 12px;
-  display: inline-block;  /* shrinks to fit content instead of full width */
+  background: #f7fbfd;
+  border: 1.5px solid rgb(49, 66, 87);
+  border-radius: 14px;
+  box-shadow: 3px 3px 0px rgb(49, 66, 87);
+  display: inline-block;
 }
-
 .display-page .summary-list li {
   margin: 10px 0;
   font-family: inherit;
