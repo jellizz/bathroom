@@ -1,47 +1,109 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import type { User } from 'firebase/auth'
+import { auth } from '../firebase'
 import type { Review } from '../types'
 import './LikeDislikeButton.css'
 import API_BASE from '../config'
 
 // shows the likes and dislikes for a given review, allows users to click buttons to like or dislike
 
-export type Props = {
+export type Props = { 
     review: Review
 }
 
+type ReviewResponse = Review | { review: Review }
+
+const getCount = (count: Review['likes'] | Review['dislikes']) => count ?? 0
+
+const getUpdatedReview = (data: ReviewResponse) => (
+    'review' in data ? data.review : data
+)
+
 const LikeDislikeButton = ({ review }: Props) => {
-    const [likes, setLikes] = useState(review.likes)
-    const [dislikes, setDislikes] = useState(review.dislikes)
+    const [updatedReview, setUpdatedReview] = useState<Review | null>(null)
+    const [user, setUser] = useState<User | null>(auth.currentUser)
+    const [localReaction, setLocalReaction] = useState<'like' | 'dislike' | null>(null)
+    const [notice, setNotice] = useState('')
+
+    const displayedReview = updatedReview?.firebaseId === review.firebaseId ? updatedReview : review
+    const likes = getCount(displayedReview.likes)
+    const dislikes = getCount(displayedReview.dislikes)
+    const reaction = localReaction ?? (user ? displayedReview.reactions?.[user.uid] ?? null : null)
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+            setUser(currentUser)
+        })
+
+        return () => unsubscribe()
+    }, [])
 
     // PUSH requests to backend to update the likes and dislikes for this review when the buttons are clicked
-    
-    const handleLike = () => {
-        fetch(
-            /* `http://localhost:5001/api/reviews/${review.id}/like`, */ // basically, what do we do when we PUSH to this endpoint?
-            `${API_BASE}/reviews/${review.id}/like`,
-            { method: 'PUT'} // what other stuff do we put here..? 
-            )
-            .then(res => res.json()) 
-            .then((updated: Review) => setLikes(updated.likes))
-            .catch(err => console.error('error liking review:', err))
-    }
 
-    const handleDislike = () => {
+    const reactToReview = async (type: 'like' | 'dislike') => {
+        if (!user) {
+            setNotice('Log in to interact with posts')
+            return
+        }
+
+        if (reaction) {
+            setNotice('You already interacted with this review')
+            return
+        }
+
+        const token = await user.getIdToken()
+
         fetch(
-            /* `http://localhost:5001/api/reviews/${review.id}/dislike`,  */
-            `${API_BASE}/reviews/${review.id}/dislike`,
-            { method: 'PUT' }
+            `${API_BASE}/reviews/${review.firebaseId}/${type}`,
+            {
+                method: 'PUT',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
             )
-            .then(res => res.json())
-            .then((updated: Review) => setDislikes(updated.dislikes))
-            .catch(err => console.error('error disliking review:', err))
+            .then(async res => {
+                const data = await res.json()
+
+                if (!res.ok) {
+                    if (data.review) {
+                        setUpdatedReview(data.review)
+                        setLocalReaction(data.review.reactions?.[user.uid] ?? null)
+                    }
+                    throw new Error(data.message || 'Could not update review')
+                }
+
+                return getUpdatedReview(data as ReviewResponse)
+            }) 
+            .then((updated: Review) => {
+                setUpdatedReview(updated)
+                setLocalReaction(updated.reactions?.[user.uid] ?? type)
+                setNotice('')
+            })
+            .catch(err => {
+                setNotice(err.message)
+                console.error(`error ${type === 'like' ? 'liking' : 'disliking'} review:`, err)
+            })
     }
 
 
     return (
         <div className="like-dislike">
-            <button onClick={handleLike}>Likes ({likes})</button>
-            <button onClick={handleDislike}>Dislikes ({dislikes})</button>
+            <button
+                className={reaction === 'like' ? 'active' : ''}
+                disabled={Boolean(reaction)}
+                onClick={() => reactToReview('like')}
+            >
+                Likes ({likes})
+            </button>
+            <button
+                className={reaction === 'dislike' ? 'active' : ''}
+                disabled={Boolean(reaction)}
+                onClick={() => reactToReview('dislike')}
+            >
+                Dislikes ({dislikes})
+            </button>
+            {notice && <span className="interaction-notice">{notice}</span>}
         </div>
     )
 

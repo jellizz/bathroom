@@ -18,20 +18,6 @@ if (process.env.FIREBASE_SERVICE_ACCOUNT) {
   // login with either google cloud authentication or firebase service key
   // if using service key, save to a file named 'service-account-key.json' in backend
 
-  /* 
-  HI MARLA. To make the backend pull from firebase, it should work if you do 
-  the following in terminal (i think...):
-  gcloud auth login
-  gcloud config set project cornell-bathroom
-  gcloud auth application-default login
-
-  ^ that is, if you want to log in with google. 
-  you may need to download google cloud CLI first to run the above commands
-
-  it should also work if you upload your own key to a local file. hopefully.
-
-  Marla: TY!!!!!
-  */ 
   try {
     credential = admin.credential.applicationDefault();
     authMethod = 'Cloud Auth (ADC)';
@@ -48,7 +34,6 @@ admin.initializeApp({
   credential,
   projectId: 'cornell-bathroom'
 })
-
 
 console.log(`Auth method: ${authMethod}`);
 
@@ -68,70 +53,57 @@ app.use((req, res, next) => {
   next();
 });
 
-
-// because we don't have a database yet, I hardcoded some bathroom data to test the API routes.
-// will be removed once we have a database we can pull from instead.
-
-const bathrooms = require('./data/bathrooms.json')
-const reviews = require('./data/reviews.json')
+const withFirebaseId = (doc) => {
+  const { id, ...data } = doc.data() || {}
+  return {
+    ...data,
+    firebaseId: doc.id,
+  }
+}
 
 // get all bathrooms 
 app.get('/api/bathrooms', async (req, res) => {
-/*   res.json(bathrooms) */
   try {
     const snapshot = await db.collection('bathrooms').get()
-    const bathrooms = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    const bathrooms = snapshot.docs.map(withFirebaseId)
     res.json(bathrooms)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
 })
 
-// get a specific bathroom based on id
-app.get('/api/bathrooms/:id', async (req, res) => {
-/*   const bathroom = bathrooms.find(b => b.id === Number(req.params.id))
-  if (!bathroom) { 
-    return res.status(404).json({ message: `Bathroom with id ${req.params.id} not found` })
-  }
-  res.json(bathroom) */
+// get a specific bathroom based on the firestore document id
+app.get('/api/bathrooms/:firebaseId', async (req, res) => {
   try {
-    const doc = await db.collection('bathrooms').doc(req.params.id).get()
+    const doc = await db.collection('bathrooms').doc(req.params.firebaseId).get()
     if (!doc.exists) {
-      return res.status(404).json({ message: `Bathroom with id ${req.params.id} not found` })
+      return res.status(404).json({ message: `Bathroom with firebaseId ${req.params.firebaseId} not found` })
     }
-    res.json({ id: doc.id, ...doc.data() })
+    res.json(withFirebaseId(doc))
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
 })
 
-// get a specific bathroom's reviews based on id
-app.get('/api/bathrooms/:id/reviews', async (req, res) => {
-  const bathroomReviews = reviews.filter(r => r.bathroomId === Number(req.params.id))
-  res.json(bathroomReviews)
-/*   try {
+// get a specific bathroom's reviews based on the bathroom firestore document id
+app.get('/api/bathrooms/:firebaseId/reviews', async (req, res) => {
+  try {
     const snapshot = await db.collection('reviews')
-        .where('bathroomId', '==', req.params.id)
+        .where('bathroomId', '==', req.params.firebaseId)
         .get()
-      const reviews = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+      const reviews = snapshot.docs.map(withFirebaseId)
       res.json(reviews)
   } catch (error) {
     res.status(500).json({ message: error.message })
-  } */
+  }
 })
 
 // This is good practice for PUSHing info to server (such as a user liking a review)
 
 // increment likes for a specific review (they have their own ids separate from bathroom id)
-app.put('/api/reviews/:id/like', async (req, res) => { 
-/*   const review = reviews.find(r => r.id === Number(req.params.id))
-  if (!review) {
-    return res.status(404).json({ message: 'Review not found' })
-  }
-  review.likes += 1 // so it actually updates the number of likes in the server data, not just on the frontend
-  res.json(review) */
+app.put('/api/reviews/:firebaseId/like', async (req, res) => { 
   try {
-    const reviewRef = db.collection('reviews').doc(req.params.id)
+    const reviewRef = db.collection('reviews').doc(req.params.firebaseId)
     const review = await reviewRef.get()
     
     if (!review.exists) {
@@ -143,22 +115,16 @@ app.put('/api/reviews/:id/like', async (req, res) => {
     })
     
     const updated = await reviewRef.get()
-    res.json({ id: updated.id, ...updated.data() })
+    res.json(withFirebaseId(updated))
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
 })
 
 // increment dislikes for a review (same deal)
-app.put('/api/reviews/:id/dislike', async (req, res) => {
-/*   const review = reviews.find(r => r.id === Number(req.params.id))
-  if (!review) {
-    return res.status(404).json({ message: 'Review not found' })
-  }
-  review.dislikes += 1
-  res.json(review) */
+app.put('/api/reviews/:firebaseId/dislike', async (req, res) => {
   try {
-    const reviewRef = db.collection('reviews').doc(req.params.id)
+    const reviewRef = db.collection('reviews').doc(req.params.firebaseId)
     const review = await reviewRef.get()
     
     if (!review.exists) {
@@ -170,7 +136,23 @@ app.put('/api/reviews/:id/dislike', async (req, res) => {
     })
     
     const updated = await reviewRef.get()
-    res.json({ id: updated.id, ...updated.data() })
+    res.json(withFirebaseId(updated))
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+})
+
+app.post('/api/reviews', async (req, res) => {
+  try {
+    const { id, firebaseId, likes, dislikes, reactions, ...reviewData } = req.body
+    const docRef = await db.collection('reviews').add({
+      ...reviewData,
+      likes: likes ?? 0,
+      dislikes: dislikes ?? 0,
+      reactions: reactions ?? {},
+    })
+    const created = await docRef.get()
+    res.json({ message: 'Review created', review: withFirebaseId(created) })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
@@ -184,32 +166,30 @@ app.post('/api/bathrooms', async (req, res) => {
 /*   res.json({ message: 'POST request - creates new bathroom', data: req.body })
  */
   try {
-    const docRef = await db.collection('bathrooms').add(req.body)
-    res.json({ message: 'Bathroom created', id: docRef.id, data: req.body })
+    const { id, firebaseId, ...bathroomData } = req.body
+    const docRef = await db.collection('bathrooms').add(bathroomData)
+    const created = await docRef.get()
+    res.json({ message: 'Bathroom created', bathroom: withFirebaseId(created) })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
 })
 
 // updates a bathroom's info
-app.put('/api/bathrooms/:id', async (req, res) => {
-/*   res.json({ message: `PUT request - updates bathroom ${req.params.id}`, data: req.body })
- */
+app.put('/api/bathrooms/:firebaseId', async (req, res) => {
   try {
-    await db.collection('bathrooms').doc(req.params.id).update(req.body)
-    res.json({ message: `Updated bathroom ${req.params.id}`, data: req.body })
+    await db.collection('bathrooms').doc(req.params.firebaseId).update(req.body)
+    res.json({ message: `Updated bathroom ${req.params.firebaseId}`, data: req.body })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
 })
 
 // deletes a bathroom profile
-app.delete('/api/bathrooms/:id', async (req, res) => {
-/*   res.json({ message: `DELETE request - removes bathroom ${req.params.id}` })
- */
+app.delete('/api/bathrooms/:firebaseId', async (req, res) => {
   try {
-    await db.collection('bathrooms').doc(req.params.id).delete()
-    res.json({ message: `Deleted bathroom ${req.params.id}` })
+    await db.collection('bathrooms').doc(req.params.firebaseId).delete()
+    res.json({ message: `Deleted bathroom ${req.params.firebaseId}` })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

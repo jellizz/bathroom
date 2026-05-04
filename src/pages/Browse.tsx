@@ -31,10 +31,25 @@ const Browse = () => {
         .catch(err => console.error('error fetching bathrooms:', err))
     }, [])
 
-    // reset to page 1 when query or sort changes
-    useEffect(() => {
+    const updateQuery = (value: string) => {
+        setQuery(value)
         setCurrentPage(1)
-    }, [query, sortBy, sortOrder, campusFilter])
+    }
+
+    const updateSortBy = (value: 'name' | 'rating') => {
+        setSortBy(value)
+        setCurrentPage(1)
+    }
+
+    const updateCampusFilter = (value: 'All' | 'North' | 'West' | 'Central') => {
+        setCampusFilter(value)
+        setCurrentPage(1)
+    }
+
+    const toggleSortOrder = () => {
+        setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
+        setCurrentPage(1)
+    }
 
     // filter bathrooms based on search query (by name... for now!)
     const filtered = bathrooms.filter((b) => // filtering function
@@ -64,21 +79,21 @@ const Browse = () => {
                     type="text"
                     placeholder="Enter a location, name, description, or campus..."
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={(e) => updateQuery(e.target.value)}
                 />
             </div>
             <div className="filter-section">
-                <select value={sortBy} onChange={(e) => setSortBy(e.target.value as 'name' | 'rating')}>
+                <select value={sortBy} onChange={(e) => updateSortBy(e.target.value as 'name' | 'rating')}>
                     <option value="rating">Sort by Rating</option>
                     <option value="name">Sort by Name</option>
                 </select>
-                <select value={campusFilter} onChange={(e) => setCampusFilter(e.target.value as 'All' | 'North' | 'West' | 'Central')}>
+                <select value={campusFilter} onChange={(e) => updateCampusFilter(e.target.value as 'All' | 'North' | 'West' | 'Central')}>
                     <option value="All">All Campuses</option>
                     <option value="North">North Campus</option>
                     <option value="West">West Campus</option>
                     <option value="Central">Central Campus</option>
                 </select>
-                <button onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}>
+                <button onClick={toggleSortOrder}>
                     {sortOrder === 'desc' ? 'High to Low' : 'Low to High'}
                 </button>
             </div>
@@ -86,7 +101,7 @@ const Browse = () => {
             <div className="bathroom-list">
             {paginatedBathrooms.map(b => (
                 <BathroomCard 
-                    key={b.id} 
+                    key={b.firebaseId}
                     bathroom={b} 
                 />
             ))}
