@@ -1,9 +1,11 @@
 ```
 C o r n e l l    B a t h r o o m
 
-9/10 Cornellians say that they're still looking for... the one. After class, that coffee you drank
-an hour ago is coming back to haunt you. All you need is... the one. That quiet stall, where you
-can sit alone with your thoughts and live without fear of people hearing your rear.
+9/10 Cornellians say that they're still looking for... the one. After class, that coffee
+you drank an hour ago is coming back to haunt you. All you need is... the one. That
+quiet stall, where you can sit alone with your thoughts and live without fear of
+people hearing your rear.
+
 FIND THE ONE TODAY!
 
 
