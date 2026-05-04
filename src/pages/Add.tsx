@@ -31,7 +31,7 @@ const Add = () => {
         const showerText = hasShower ? 'does' : 'does not'
         const accessibleText = wheelchairAccessible ? 'is' : 'is not'
 
-        return `This is a ${gender}, ${stallType} bathroom. It ${showerText} have a shower and ${accessibleText} wheelchair accessible.`
+        return `This is a ${gender.toLowerCase()}, ${stallType} bathroom. It ${showerText} have a shower and ${accessibleText} wheelchair accessible.`
     }
 
     // Fetch bathrooms for the review form dropdown
