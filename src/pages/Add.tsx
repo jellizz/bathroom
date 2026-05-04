@@ -20,13 +20,20 @@ const Add = () => {
 
     // Add new bathroom form state
     const [bathroomName, setBathroomName] = useState('')
-    const [description, setDescription] = useState('')
     const [gender, setGender] = useState('')
     const [campus, setCampus] = useState('')
     const [newBathroomRating, setNewBathroomRating] = useState(3)
     const [wheelchairAccessible, setWheelchairAccessible] = useState(false)
     const [singleStall, setSingleStall] = useState(false)
     const [hasShower, setHasShower] = useState(false)
+
+    const buildBathroomDescription = () => {
+        const stallType = singleStall ? 'single stall' : 'multi stall'
+        const showerText = hasShower ? 'does' : 'does not'
+        const accessibleText = wheelchairAccessible ? 'is' : 'is not'
+
+        return `This is a ${gender}, ${stallType} bathroom. It ${showerText} have a shower and ${accessibleText} wheelchair accessible.`
+    }
 
     // Fetch bathrooms for the review form dropdown
     useEffect(() => {
@@ -55,10 +62,12 @@ const Add = () => {
 
     const handleNewBathroomSubmit = (e: React.FormEvent) => {
         e.preventDefault()
+        const generatedDescription = buildBathroomDescription()
+
         console.log({ // need to actually connect to database...
             type: 'new_bathroom',
             bathroomName,
-            description,
+            description: generatedDescription,
             gender,
             campus,
             rating: newBathroomRating,
@@ -69,7 +78,6 @@ const Add = () => {
         })
         alert('New bathroom submitted!')
         setBathroomName('')
-        setDescription('')
         setGender('')
         setCampus('')
         setNewBathroomRating(3)
@@ -167,18 +175,6 @@ const Add = () => {
                                 value={bathroomName}
                                 onChange={(e) => setBathroomName(e.target.value)}
                                 placeholder="e.g., Uris Library 2nd Floor"
-                                required
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="description">Description:</label>
-                            <textarea
-                                id="description"
-                                rows={4}
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                placeholder="Tell us about this bathroom..."
                                 required
                             />
                         </div>

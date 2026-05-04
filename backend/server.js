@@ -68,6 +68,14 @@ const docWithFirebaseId = (doc) => ({
   ...dataWithoutClientIds(doc.data())
 })
 
+const buildBathroomDescription = ({ gender, singleStall, hasShower, wheelchairAccessible }) => {
+  const stallType = singleStall ? 'single stall' : 'multi stall'
+  const showerText = hasShower ? 'does' : 'does not'
+  const accessibleText = wheelchairAccessible ? 'is' : 'is not'
+
+  return `This is a ${gender}, ${stallType} bathroom. It ${showerText} have a shower and ${accessibleText} wheelchair accessible.`
+}
+
 // testing api endpoint (for bathroom reviews) to see if backend works
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Test route works!', timestamp: new Date().toISOString() });
@@ -168,6 +176,8 @@ app.put('/api/reviews/:firebaseId/dislike', async (req, res) => {
 app.post('/api/bathrooms', async (req, res) => {
   try {
     const data = dataWithoutClientIds(req.body)
+    data.description = buildBathroomDescription(data)
+
     const docRef = await db.collection('bathrooms').add(data)
     res.json({ message: 'Bathroom created', firebaseId: docRef.id, data })
   } catch (error) {

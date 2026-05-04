@@ -21,6 +21,13 @@ type Review = {
   rating: number
   likes: number
   dislikes: number
+  user?: // based on google user info, optional because we might want to allow anonymous reviews?
+    {
+      name: string
+      email: string
+      profilePicture: string 
+    }
+
 }
 
 export type { Bathroom, Review }

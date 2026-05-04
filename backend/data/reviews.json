@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "bathroomId": 2, 
     "date": "4/7/2026",
     "text": "Loved this bathroom! Seems pretty regularly maintained. A bit of gunk in the sink though. Good place to study!",
@@ -9,7 +8,6 @@
     "dislikes": 1
   },
   {
-    "id": 2,
     "bathroomId": 1,
     "date": "4/8/2026",
     "text": "It's okay, but the single stall can feel cramped. Not accessible, which is a problem.",
@@ -18,7 +16,6 @@
     "dislikes": 3
   },
   {
-    "id": 3,
     "bathroomId": 3,
     "date": "4/9/2026",
     "text": "Clean and spacious. Always stocked with toilet paper. Highly recommend!",
@@ -27,7 +24,6 @@
     "dislikes": 0
   },
   {
-    "id": 4,
     "bathroomId": 4,
     "date": "4/10/2026",
     "text": "Outdated fixtures, but it works. Could use some updating.",
@@ -36,7 +32,6 @@
     "dislikes": 7
   },
   {
-    "id": 5,
     "bathroomId": 5,
     "date": "4/11/2026",
     "text": "Showers are a lifesaver after practice. Keep it up!",
@@ -45,7 +40,6 @@
     "dislikes": 2
   },
   {
-    "id": 6,
     "bathroomId": 6,
     "date": "4/12/2026",
     "text": "Quiet and private. Perfect for a quick break.",
@@ -54,7 +48,6 @@
     "dislikes": 1
   },
   {
-    "id": 7,
     "bathroomId": 7,
     "date": "4/13/2026",
     "text": "Public restroom, so it's what you expect. Clean enough.",
@@ -62,7 +55,6 @@
     "dislikes": 4
   },
   {
-    "id": 8,
     "bathroomId": 8,
     "date": "4/14/2026",
     "text": "Beautiful view from the window! Worth the wait.",
@@ -70,7 +62,6 @@
     "dislikes": 3
   },
   {
-    "id": 9,
     "bathroomId": 9,
     "date": "4/15/2026",
     "text": "Late-night study essential. Showers help wake you up.",
@@ -78,7 +69,6 @@
     "dislikes": 0
   },
   {
-    "id": 10,
     "bathroomId": 10,
     "date": "4/16/2026",
     "text": "Basic outdoor facilities. Not the best, but necessary for hikes.",
