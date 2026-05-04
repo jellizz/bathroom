@@ -132,7 +132,7 @@ const Screenshots = () => {
           <Link to="/add">
             <button className="cta-primary">Add a Bathroom ➕</button>
           </Link>
-          <Link to="/browse">
+          <Link to="/">
             <button className="cta-secondary">Browse Bathrooms 🗺️</button>
           </Link>
         </div>
