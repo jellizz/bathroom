@@ -25,7 +25,7 @@ const quotes = [
     highlight: true,
   },
   {
-    text: "There are SO many hidden gem bathrooms on this campus and nobody talks about them. The ones in Uris basement are criminally underrated.",
+    text: "A lot of the time, it's hard to know exactly how to get to wheelchair-accessible bathrooms. I wish I knew where they were. Any suggestions?",
     username: "quietflushgang",
     upvotes: 203,
     side: 'left' as const,
@@ -37,7 +37,7 @@ const quotes = [
     side: 'right' as const,
   },
   {
-    text: "People act like this is classified information. Just tell us where the clean ones are!!",
+    text: "I'd really like to know about gender neutral bathrooms on campus! Help me, please!!!!",
     username: "democratizethebowl",
     upvotes: 94,
     side: 'center' as const,
@@ -100,8 +100,7 @@ const Screenshots = () => {
       <section className="screenshots-section gatekeeping-section">
         <h2 className="section-heading">The Gatekeeping Problem 🔒</h2>
         <p className="section-sub">
-          Some people guard the good bathrooms like state secrets.
-          Wouldn't it be better if we could have it all in one place?
+          Some people think that keeping the best bathrooms a secret is the key to maintaining their cleanliness... but we think that's just gatekeeping! 
         </p>
         <div className="gatekeeping-layout">
           <div className="gatekeeping-image-wrap">
@@ -117,7 +116,8 @@ const Screenshots = () => {
           <div className="gatekeeping-callout">
             <span className="callout-emoji">💡</span>
             <p>
-              When everyone keeps the best bathrooms a secret, <strong>nobody wins</strong>.
+              When everyone keeps the best bathrooms a secret, <strong>nobody wins</strong>. Whatever your needs are, whether it's cleaniness, accessibilty, 
+              or just a place you feel safe doing your businessm, you deserve to know where they can be met on campus!
               Cornell Bathrooms is the open, crowd-sourced solution we've all needed since 2018.
             </p>
           </div>
@@ -130,7 +130,7 @@ const Screenshots = () => {
         <p>Add a bathroom. Leave a review. Change a life today.</p>
         <div className="cta-buttons">
           <Link to="/add">
-            <button className="cta-primary">Add a Bathroom ➕</button>
+            <button className="cta-primary">Add a Bathroom to Help a Cornellian ➕</button>
           </Link>
           <Link to="/">
             <button className="cta-secondary">Browse Bathrooms 🗺️</button>
