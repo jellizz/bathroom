@@ -5,16 +5,16 @@ import LikeDislikeButton from './LikeDislikeButton'
 import './BathroomDisplay.css'
 import API_BASE from '../config'
 
-// Displays bathroom with details and reviews based on the bathroom id in the url.
+// Displays bathroom with details and reviews based on the Firebase document ID in the url.
 
 const BathroomDisplay = () => {
     
-    const { id } = useParams() // this is the bathroom id, from react router stuffs
+    const { id } = useParams() // this is the Firebase document ID from React Router
     const [bathroom, setBathroom] = useState<Bathroom | null>(null) // null if it isn't fetched?
     const [reviews, setReviews] = useState<Review[]>([])
 
     
-    // access the bathroom information via API, using the bathroom id.
+    // access the bathroom information via API, using the Firebase document ID.
     useEffect(() => {
         /* fetch(`http://localhost:5001/api/bathrooms/${id}`)  */
         fetch(`${API_BASE}/bathrooms/${id}`)
@@ -51,7 +51,7 @@ const BathroomDisplay = () => {
             <div className="review-list">
                 {reviews.length === 0 && <p>No reviews yet!</p>}
                 {reviews.map(review => (
-                    <div key={review.id} className="review-item">
+                    <div key={review.firebaseId} className="review-item">
                         <p>Posted {review.date}:</p>
                         <p>{review.text}</p>
                         <LikeDislikeButton review={review} />

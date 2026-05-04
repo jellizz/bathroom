@@ -17,8 +17,8 @@ const LikeDislikeButton = ({ review }: Props) => {
     
     const handleLike = () => {
         fetch(
-            /* `http://localhost:5001/api/reviews/${review.id}/like`, */ // basically, what do we do when we PUSH to this endpoint?
-            `${API_BASE}/reviews/${review.id}/like`,
+            /* `http://localhost:5001/api/reviews/${review.firebaseId}/like`, */ // basically, what do we do when we PUSH to this endpoint?
+            `${API_BASE}/reviews/${review.firebaseId}/like`,
             { method: 'PUT'} // what other stuff do we put here..? 
             )
             .then(res => res.json()) 
@@ -28,8 +28,8 @@ const LikeDislikeButton = ({ review }: Props) => {
 
     const handleDislike = () => {
         fetch(
-            /* `http://localhost:5001/api/reviews/${review.id}/dislike`,  */
-            `${API_BASE}/reviews/${review.id}/dislike`,
+            /* `http://localhost:5001/api/reviews/${review.firebaseId}/dislike`,  */
+            `${API_BASE}/reviews/${review.firebaseId}/dislike`,
             { method: 'PUT' }
             )
             .then(res => res.json())

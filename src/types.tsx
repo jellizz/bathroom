@@ -2,7 +2,7 @@
 // which will be used to ensure type safety when working with bathroom and review data.
 
 type Bathroom = {
-    id: number
+    firebaseId: string
     name: string
     description: string
     rating: number
@@ -14,8 +14,8 @@ type Bathroom = {
 }
 
 type Review = {
-  id: number
-  bathroomId: number
+  firebaseId: string
+  bathroomId: string
   date: string
   text: string
   rating: number

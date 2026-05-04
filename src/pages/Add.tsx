@@ -114,7 +114,7 @@ const Add = () => {
                             >
                                 <option value="">-- Choose a bathroom --</option>
                                 {bathrooms.map(b => (
-                                    <option key={b.id} value={b.id}>
+                                    <option key={b.firebaseId} value={b.firebaseId}>
                                         {b.name} ({b.campus} Campus)
                                     </option>
                                 ))}

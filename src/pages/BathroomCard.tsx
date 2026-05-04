@@ -9,7 +9,7 @@ interface Props {
   bathroom: Bathroom
 }
 
-// also links to a new page for a specific bathroom (based on id)
+// also links to a new page for a specific bathroom (based on Firebase document ID)
 
 const BathroomCard = ({ bathroom }: Props) => {
   return (
@@ -20,7 +20,7 @@ const BathroomCard = ({ bathroom }: Props) => {
       <p>Campus: {bathroom.campus}</p>
       <p>
         <strong>Read bathroom goers' reviews </strong>
-        <Link to={`/bathroom/${bathroom.id}`}>here</Link>
+        <Link to={`/bathroom/${bathroom.firebaseId}`}>here</Link>
       </p>
     </div>
   )

@@ -86,7 +86,7 @@ const Browse = () => {
             <div className="bathroom-list">
             {paginatedBathrooms.map(b => (
                 <BathroomCard 
-                    key={b.id} 
+                    key={b.firebaseId} 
                     bathroom={b} 
                 />
             ))}
