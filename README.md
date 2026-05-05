@@ -16,6 +16,8 @@ FEATURES
     - Discover and share new bathrooms across campus
 
 
+NOTES: For best viewing experience, please use device LIGHT MODE on a desktop or LAPTOP screen. This website is not optimized to support mobile devices and dark mode. 
+
 
 BACKEND SETUP
     Using Cloud Authentication:
