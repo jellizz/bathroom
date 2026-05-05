@@ -1,4 +1,4 @@
-#C o r n e l l    B a t h r o o m
+# C o r n e l l    B a t h r o o m
 
 **9/10 Cornellians say that they're still looking for... the one. After class, that coffee
 you drank an hour ago is coming back to haunt you. All you need is... the one. That
@@ -17,6 +17,8 @@ people hearing your rear.**
 
 **NOTES**: For best viewing experience, please use device LIGHT MODE on a desktop or LAPTOP screen. This website is not optimized to support mobile devices and dark mode. 
 
+
+**Dev Notes**
 ```
 BACKEND SETUP
     Using Cloud Authentication:
