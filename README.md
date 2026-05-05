@@ -1,24 +1,23 @@
-```
-C o r n e l l    B a t h r o o m
+#C o r n e l l    B a t h r o o m
 
-9/10 Cornellians say that they're still looking for... the one. After class, that coffee
+**9/10 Cornellians say that they're still looking for... the one. After class, that coffee
 you drank an hour ago is coming back to haunt you. All you need is... the one. That
 quiet stall, where you can sit alone with your thoughts and live without fear of
-people hearing your rear.
+people hearing your rear.**
 
-FIND THE ONE TODAY!
+**FIND THE ONE TODAY!**
 
 
-FEATURES
+**FEATURES**
     - Find awesome bathrooms on campus, avoid not-so-awesome bathrooms (sort by low-high...)
     - Rate bathrooms and read real reviews by Cornellians!
     - Filter bathrooms by location, gender, accessibility, showers, stalls
     - Discover and share new bathrooms across campus
 
 
-NOTES: For best viewing experience, please use device LIGHT MODE on a desktop or LAPTOP screen. This website is not optimized to support mobile devices and dark mode. 
+**NOTES**: For best viewing experience, please use device LIGHT MODE on a desktop or LAPTOP screen. This website is not optimized to support mobile devices and dark mode. 
 
-
+```
 BACKEND SETUP
     Using Cloud Authentication:
         1. Install Google Cloud CLI
